@@ -1,0 +1,46 @@
+<!DOCTYPE=HTML>
+<html>
+<head>
+  <title>Patient Dashboard</title>
+  <script>
+      var barcodeDestination = "/search_by_patient_id";
+
+      function scanFocus()
+      {
+          __$('targetbarcode').focus();
+
+      }
+
+      setInterval("scanFocus()", 3000);
+  </script>
+
+</head>
+<body>
+
+<div id="main">
+
+  <input type="text" id="appname" value="Patient<br/>Registration" />
+  <input type="text" id="facility" value="San Jose del Negrito" />
+  <input type="text" id="location" value="San Pedro Sula" />
+  <input type="text" id="datetoday" value="<%= Date.today.strftime('%d %B %Y') %>" />
+  <input type="text" id="user" value="<%= User.current.fullname %>" />
+
+  <div id="buttons">
+
+    <button onmousedown="window.location = '/patients/new'">Register Patient</button>
+    <button onmousedown="window.location = '/search'">Find by Name</button>
+    <button onmousedown="window.location = '/logout'">Logout</button>
+
+  </div>
+
+  <select id="tabs">
+    <option value="">Overview</option>
+    <option value="/reports">Reports</option>
+    <option value="/administration">Administration</option>
+  </select>
+
+</div>
+
+</body>
+<%= javascript_include_tag 'dashboard' %>
+</html>

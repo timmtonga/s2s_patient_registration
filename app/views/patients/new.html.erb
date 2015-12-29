@@ -1,0 +1,111 @@
+<%= form_for :patient, url: patients_path do |f| %>
+    <fieldset>
+      <legend>Patient Details</legend>
+
+      <div class="field">
+        <%= f.label :first_name %>
+        <br>
+        <%= (f.text_field :first_name, :class => "input_cell", :ajaxURL => "/search_first_name") rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :middle_name %>
+        <br>
+        <%= (f.text_field :middle_name, :class => "input_cell", :ajaxURL => "/search_first_name", :optional => :true) rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :fathers_name %>
+        <br>
+        <%= (f.text_field :fathers_name, :class => "input_cell", :ajaxURL => "/search_last_name") rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :mothers_name %>
+        <br>
+        <%= (f.text_field :mothers_name, :class => "input_cell", :ajaxURL => "/search_last_name") rescue "" %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Patient Details cont'd</legend>
+
+      <div class="field">
+        <label for="gender">Gender</label><br>
+        <select id="gender" name="patient[gender]" class="input_cell">
+          <option></option>
+          <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> >Female</option>
+          <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> >Male</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="birthdate">Date of Birth</label>
+        <br>
+
+        <input id="birthdate" name="patient[birthdate]" type="text" value="<%= @patient[:birthdate] rescue nil %>"
+               class="input_cell"
+               fieldtype="date"
+               absolute_min="<%= Time.now.advance(:years => -130).strftime('%Y/%m/%d') %>"
+               absolute_max="<%= Time.now.strftime('%Y/%m/%d') %>" />
+
+      </div>
+
+      <div class="field">
+        <%= f.label :marital_status %>
+        <br>
+        <%= select_tag "patient[marital_status]", options_for_select(marital_status_options, (@patient.marital_status rescue nil)),
+                       :class => 'input_cell', :placeholder => "Select marital status", :required => true %>
+
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Patient Details cont'd</legend>
+      <%= f.label :region_of_birth %>
+      <br>
+      <%= (f.text_field "region_of_birth", :class => 'input_cell', :ajaxURL => "/regions",
+                        :tt_onUnload => "navigablefieldsets[parseInt(__$('textForpatient_province_of_birth').getAttribute('section'))][parseInt(__$('textForpatient_province_of_birth').getAttribute('pos'))].setAttribute('ajaxURL', '/provinces?region=' + __$('textForpatient_region_of_birth').value);") rescue "" %>
+
+      <%= f.label :province_of_birth %>
+      <br>
+      <%= (f.text_field "province_of_birth", :class => 'input_cell',:ajaxURL => "/provinces" ) rescue ""  %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Patient Details cont'd</legend>
+      <%= f.label :region_of_residence %>
+      <br>
+      <%= (f.text_field "region_of_residence", :class => 'input_cell', :ajaxURL => "/regions",
+                        :tt_onUnload => "navigablefieldsets[parseInt(__$('textForpatient_province_of_residence').getAttribute('section'))][parseInt(__$('textForpatient_province_of_residence').getAttribute('pos'))].setAttribute('ajaxURL', '/provinces?region=' + __$('textForpatient_region_of_residence').value);") rescue "" %>
+
+      <%= f.label :province_of_residence %>
+      <br>
+      <%= (f.text_field "province_of_residence", :class => 'input_cell', :ajaxURL => "/provinces",
+                        :tt_onUnload => "navigablefieldsets[parseInt(__$('textForpatient_barrio_of_residence').getAttribute('section'))][parseInt(__$('textForpatient_barrio_of_residence').getAttribute('pos'))].setAttribute('ajaxURL', '/barrios?region=' + __$('textForpatient_region_of_residence').value + '&province=' + __$('textForpatient_province_of_residence').value);") rescue "" %>
+
+      <%= f.label :barrio_of_residence %>
+      <br>
+      <%= (f.text_field "barrio_of_residence", :class => 'input_cell', :ajaxURL => "/barrios") rescue "" %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Patient Details cont'd</legend>
+
+      <div class="field">
+        <%= f.label :occupation %>
+        <br>
+        <%= select_tag "patient[occupation]", options_for_select(occupation_options, (@patient.occupation rescue nil)),
+                       :class => 'input_cell', :placeholder => "Select patient occupation", :required => true %>
+
+      </div>
+
+      <div class="field">
+        <%= f.label :social_security_number %>
+        <br>
+        <%= (f.text_field :social_security_number, :class => "input_cell", :optional => :true, :fieldtype => "decimal",
+                          :regex => '^\d{9}$|^N\/A$', :regex_message =>"Please enter a social security number") rescue "" %>
+      </div>
+    </fieldset>
+<% end %>
+
+<script>
+  init();
+</script>

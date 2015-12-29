@@ -1,0 +1,62 @@
+<%= form_for :user,  url: users_path do |f| %>
+
+    <fieldset>
+      <legend>User Details</legend>
+      <div class="field">
+        <%= f.label :username %>
+        <br>
+        <%= f.text_field :username, :class => "input_cell", :placeholder => "Username", :required => true,
+                         :textCase => "lower", :uniq_check => "/username_availability?search_str=" %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <br>
+        <%= f.password_field :password, :class => "input_cell", :placeholder => "Password",
+                             :required => true, :textCase => "lower" %>
+      </div>
+      <div class="field">
+        <%= f.label :confirm_password %>
+        <br>
+        <%= f.password_field :confirm_password, :class => "input_cell",
+                             :placeholder => "Confirm the password entered", :required => true,
+                             :textCase => "lower" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :user_role %>
+        <br>
+        <%= select_tag "user[user_role]", options_for_select(roles, (@user.role rescue nil)),
+                       :class => 'input_cell', :placeholder => "Select user role", :required => true  %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>User Details Cont'd</legend>
+      <div class="field">
+        <%= f.label :first_name %>
+        <br>
+        <%= (f.text_field :first_name, :class => "input_cell", :ajaxURL => "/search_first_name") rescue "" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :middle_name %>
+        <br>
+        <%= (f.text_field :middle_name, :class => "input_cell", :ajaxURL => "/search_first_name", :optional => :true) rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :fathers_name %>
+        <br>
+        <%= (f.text_field :fathers_name, :class => "input_cell", :ajaxURL => "/search_last_name") rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :mothers_name %>
+        <br>
+        <%= (f.text_field :mothers_name, :class => "input_cell", :ajaxURL => "/search_last_name") rescue "" %>
+      </div>
+    </fieldset>
+
+<% end %>
+
+<script type="text/javascript">
+  init();
+</script>

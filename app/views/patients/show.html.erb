@@ -1,0 +1,44 @@
+<!DOCTYPE=HTML>
+<html>
+<head>
+  <title>Patient Dashboard</title>
+</head>
+<body>
+
+<div id="home">
+
+  <input type="text" id="appname" value="Patient<br/>Registration" />
+
+  <div id="patient-card">
+
+    <input type="text" id="gender" value="<%= @patient.gender[0].upcase %>" />
+
+    <input type="text" id="name" value="<%= @patient.fullname %>" />
+
+    <input type="text" id="Patient ID" value="<%= @patient.formatted_pnid %>" />
+
+    <input type="text" id="Age" value="<%= @patient.age %>" />
+
+    <input type="text" id="Social Security #" value="<%= @patient.ssn %>"  />
+
+    <input type="text" id="Marital Status" value="<%= @patient.marital_status.titleize %>" />
+
+  </div>
+
+  <div id="buttons">
+
+    <button onmousedown="window.location = '/'">Finish</button>
+
+  </div>
+
+  <select id="tabs">
+    <option value="">Current Visit</option>
+    <option value="">Past Visits</option>
+    <option value="/print_barcode?patient_id=<%=@patient.id%>">Print Barcode</option>
+  </select>
+
+</div>
+
+    <%= javascript_include_tag 'dashboard' %>
+</body>
+</html>

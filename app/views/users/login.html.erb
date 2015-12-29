@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>eBRS Prototype</title>
+
+  <style>
+
+      body {
+          max-width: 1200px;
+          padding-top: 20px;
+          margin: 10px;
+          -moz-user-select: none;
+          font-family: "Nimbus Sans L", "Arial Narrow", sans-serif;
+          margin: auto;
+          color: #3465a4;
+          font-size: 18px;
+      }
+
+      fieldset {
+          border: 1px solid #3465a4;
+          border-radius: 10px;
+          margin-bottom: 20px;
+      }
+
+      legend {
+          font-size: 28px;
+      }
+
+      select {
+          width: 82.5% !important;
+      }
+
+      .table {
+          display: table;
+      }
+
+      .row {
+          display: table-row;
+      }
+
+      .cell {
+          display: table-cell;
+      }
+
+      .button {
+          width: 200px;
+          height: 90px;
+          border: 1px solid rgba(200, 200, 200, 0.5);
+          margin: 10px;
+          padding: 15px;
+          display: inline-block;
+          color: #3465a4;
+          font-size: 18px;
+          border-radius: 5px;
+          vertical-align: middle;
+          cursor: pointer;
+      }
+
+      .button:hover {
+          border-bottom: 1px inset rgba(83, 121, 232, 1);
+          background-color: rgba(83, 121, 232, 0.2);
+      }
+
+      .button:active {
+          border-bottom: 1px solid rgba(239, 126, 15, 1);
+          background-color: rgba(249, 125, 4, 0.1);
+      }
+
+      .input_cell {
+          font-size: 1em;
+          padding: 8px;
+          border: 1px solid #3465a4;
+          border-radius: 5px;
+          width: 80%;
+      }
+
+      button {
+          font-size: 1em;
+          padding: 15px;
+          min-width: 120px;
+          cursor: pointer;
+          min-height: 60px;
+          border-radius: 6px !important;
+          margin: 3px;
+          font-weight: normal !important;
+      }
+
+      button:active {
+          background-color: #82bbd1 !important;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#82bbd1), to(#cd8912)) !important;
+          background-image: -webkit-linear-gradient(top, #82bbd1, #cd8912) !important;
+          background-image: -moz-linear-gradient(top, #efb144, #cd8912) !important;
+          background-image: -ms-linear-gradient(top, #efb144, #cd8912) !important;
+          background-image: -o-linear-gradient(top, #efb144, #cd8912) !important;
+          background-image: linear-gradient(to bottom, #efb144, #cd8912) !important;
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#efb144, endColorstr=#cd8912) !important;
+      }
+
+      .buttons {
+          font-size: 1em;
+          padding: 15px;
+          min-width: 100px;
+          cursor: pointer;
+          min-height: 60px;
+          border-radius: 5px !important;
+      }
+
+      .blue {
+          border: 1px solid #7eb9d0;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 28px;
+          font-family: arial, helvetica, sans-serif;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+          font-weight: bold;
+          color: #FFFFFF;
+          background-color: #a7cfdf;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#a7cfdf), to(#23538a));
+          background-image: -webkit-linear-gradient(top, #a7cfdf, #23538a);
+          background-image: -moz-linear-gradient(top, #a7cfdf, #23538a);
+          background-image: -ms-linear-gradient(top, #a7cfdf, #23538a);
+          background-image: -o-linear-gradient(top, #a7cfdf, #23538a);
+          background-image: linear-gradient(to bottom, #a7cfdf, #23538a);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#a7cfdf, endColorstr=#23538a);
+      }
+
+      .blue:hover {
+          border: 1px solid #5ca6c4;
+          background-color: #82bbd1;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#82bbd1), to(#193b61));
+          background-image: -webkit-linear-gradient(top, #82bbd1, #193b61);
+          background-image: -moz-linear-gradient(top, #82bbd1, #193b61);
+          background-image: -ms-linear-gradient(top, #82bbd1, #193b61);
+          background-image: -o-linear-gradient(top, #82bbd1, #193b61);
+          background-image: linear-gradient(to bottom, #82bbd1, #193b61);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#82bbd1, endColorstr=#193b61);
+      }
+
+      .green {
+          border: 1px solid #34740e;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 28px;
+          font-family: arial, helvetica, sans-serif;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+          font-weight: bold;
+          color: #FFFFFF;
+          background-color: #4ba614;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#4ba614), to(#008c00));
+          background-image: -webkit-linear-gradient(top, #4ba614, #008c00);
+          background-image: -moz-linear-gradient(top, #4ba614, #008c00);
+          background-image: -ms-linear-gradient(top, #4ba614, #008c00);
+          background-image: -o-linear-gradient(top, #4ba614, #008c00);
+          background-image: linear-gradient(to bottom, #4ba614, #008c00);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#4ba614, endColorstr=#008c00);
+      }
+
+      .green:hover {
+          border: 1px solid #224b09;
+          background-color: #36780f;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#36780f), to(#005900));
+          background-image: -webkit-linear-gradient(top, #36780f, #005900);
+          background-image: -moz-linear-gradient(top, #36780f, #005900);
+          background-image: -ms-linear-gradient(top, #36780f, #005900);
+          background-image: -o-linear-gradient(top, #36780f, #005900);
+          background-image: linear-gradient(to bottom, #36780f, #005900);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#36780f, endColorstr=#005900);
+      }
+
+      .red {
+          border: 1px solid #72021c;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 28px;
+          font-family: arial, helvetica, sans-serif;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+          font-weight: bold;
+          color: #FFFFFF;
+          background-color: #a90329;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#a90329), to(#6d0019));
+          background-image: -webkit-linear-gradient(top, #a90329, #6d0019);
+          background-image: -moz-linear-gradient(top, #a90329, #6d0019);
+          background-image: -ms-linear-gradient(top, #a90329, #6d0019);
+          background-image: -o-linear-gradient(top, #a90329, #6d0019);
+          background-image: linear-gradient(to bottom, #a90329, #6d0019);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#a90329, endColorstr=#6d0019);
+      }
+
+      .red:hover {
+          border: 1px solid #450111;
+          background-color: #77021d;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#77021d), to(#3a000d));
+          background-image: -webkit-linear-gradient(top, #77021d, #3a000d);
+          background-image: -moz-linear-gradient(top, #77021d, #3a000d);
+          background-image: -ms-linear-gradient(top, #77021d, #3a000d);
+          background-image: -o-linear-gradient(top, #77021d, #3a000d);
+          background-image: linear-gradient(to bottom, #77021d, #3a000d);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#77021d, endColorstr=#3a000d);
+      }
+
+      .gray {
+          border: 1px solid #ccc;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 28px;
+          font-family: arial, helvetica, sans-serif;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+          font-weight: bold;
+          color: #FFFFFF;
+          background-color: #ccc;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+          background-image: -webkit-linear-gradient(top, #ccc, #999);
+          background-image: -moz-linear-gradient(top, #ccc, #999);
+          background-image: -ms-linear-gradient(top, #ccc, #999);
+          background-image: -o-linear-gradient(top, #ccc, #999);
+          background-image: linear-gradient(to bottom, #ccc, #999);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ccc, endColorstr=#999);
+      }
+
+      .gray:hover {
+          border: 1px solid #ccc;
+          background-color: #ddd;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#333), to(#ccc));
+          background-image: -webkit-linear-gradient(top, #333, #ccc);
+          background-image: -moz-linear-gradient(top, #333, #ccc);
+          background-image: -ms-linear-gradient(top, #333, #ccc);
+          background-image: -o-linear-gradient(top, #333, #ccc);
+          background-image: linear-gradient(to bottom, #333, #ccc);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#333, endColorstr=#ccc);
+      }
+
+      .orange {
+          border: 1px solid #ef8544;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 28px;
+          font-family: arial, helvetica, sans-serif;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+          font-weight: bold;
+          color: #FFFFFF;
+          background-color: #ef8544;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#ef8544), to(#efb144));
+          background-image: -webkit-linear-gradient(top, #ef8544, #efb144);
+          background-image: -moz-linear-gradient(top, #ef8544, #efb144);
+          background-image: -ms-linear-gradient(top, #ef8544, #efb144);
+          background-image: -o-linear-gradient(top, #ef8544, #efb144);
+          background-image: linear-gradient(to bottom, #ef8544, #efb144);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ef8544, endColorstr=#efb144);
+      }
+
+      .orange:hover {
+          border: 1px solid #ef8544;
+          background-color: #ddd;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#ff420e), to(#ef8544));
+          background-image: -webkit-linear-gradient(top, #ff420e, #ef8544);
+          background-image: -moz-linear-gradient(top, #ff420e, #ef8544);
+          background-image: -ms-linear-gradient(top, #ff420e, #ef8544);
+          background-image: -o-linear-gradient(top, #ff420e, #ef8544);
+          background-image: linear-gradient(to bottom, #ff420e, #ef8544);
+          filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff420e, endColorstr=#ef8544);
+      }
+
+      .arrow-up {
+          width: 0;
+          height: 0;
+          border-left: 20px solid transparent;
+          border-right: 20px solid transparent;
+          cursor: pointer;
+          border-bottom: 20px solid #3465a4;
+      }
+
+      .arrow-up:hover {
+          border-bottom: 20px solid #5ca6c4;
+      }
+
+      .arrow-up:active {
+          border-bottom: 20px solid #ef8544;
+      }
+
+      .arrow-down {
+          width: 0;
+          height: 0;
+          border-left: 20px solid transparent;
+          border-right: 20px solid transparent;
+          cursor: pointer;
+          border-top: 20px solid #3465a4;
+      }
+
+      .arrow-down:hover {
+          border-top: 20px solid #5ca6c4;
+      }
+
+      .arrow-down:active {
+          border-top: 20px solid #ef8544;
+      }
+
+      .arrow-right {
+          width: 0;
+          height: 0;
+          border-top: 60px solid transparent;
+          border-bottom: 60px solid transparent;
+
+          border-left: 60px solid green;
+      }
+
+      .arrow-left {
+          width: 0;
+          height: 0;
+          border-top: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+
+          border-right: 10px solid blue;
+      }
+  </style>
+
+  <%= javascript_include_tag 'ts', 'data-turbolinks-track' => true %>
+</head>
+<body onload="resize()" onresize="resize()" style=" color: #000;">
+
+<div id="display" style="border-top: none; width: 100%; height: 100%; padding-top: 10px; overflow: auto;">
+
+  <%= form_tag(login_path, method: 'post', enctype: 'multipart/form-data', class: 'form form-signup', autocomplete: "off") do %>
+      <%#= hidden_referrer_input_tag %>
+
+      <table style="margin: auto;" cellpadding="10">
+        <tr>
+          <td colspan="5" align="center">
+            <img id="logo" src=""
+                 style="margin-bottom: 10px;"/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5" align="center" style="font-size: 36px; color: #3465a4;;">
+            Patient Registration
+          </td>
+        </tr>
+        <!--tr style="cursor: pointer;" onclick="switchContext()">
+          <td align="right">
+            Touch-based
+          </td>
+          <td>
+            :
+          </td>
+          <td align="center">
+            <img id="touch" height="35" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAACV0lEQVRoge2a3arqMBCFp0ljW6tW/EETo15tUXz/J1NQW+s6F5KhVfdt4z5kwYIUIszXmY4XMxTHMYgIRASlFJ+llHz27WaMWZaBiDAYDEBEiKKoeZeQJAmEEPyjPM/R6/X4sk8rpRBFEeI4hpQSQgjkec7xCiHY1MxGmqZM/pqpb3Kapr/F90yju/AptT4tpUSWZRy4q5iP8fV6PURRxOnLsgyHwwHz+RyLxQLGGK8uigLWWlhrMZlMsFqtYK2FUgrD4RBSSjYREUajEdOt12ucz2c4PR4PrwaAqqpwvV5bMe33exDR+zcjhODUGWMAAHVdo65r+Nb1ekVZlvzszpPJ5L3UHEi/3wcRQWvNb+R+v3sB+KSyLFvZ0VojjmPuetwAmr3aWssZcVDfomY8WutPDSPAeFGACTAdKMAEmA4UYAJMBwowAaYDBZgA04ECTIDpQAEmwHSgABNgOlCACTAdKMD8eRg3hdJaA3iO3r5FVVXx4Ot0OgEArLXvMEIISCk5O+v1GrfbzWfsLb2OIsuyRF3X2Gw2nxYviJcDpJSw1vJbaI7dfOt+v7eqxZVZcwGCXpcYjDGtgajvafPrlNlpuVyi3++3YYQQSNOUdwFmsxmAZzpdffpWVVUoy7I1MJ5Op58bQJIkrW/mmz5+AK1KAYDL5YLdbgciai815HnOZHmeQymF4/GI8XgMYwy01l5tjMF2u4XWGsvlEkVR4OfnB0II3gVw5sy4zuAy1Oxwvu32ZpRS/BeSJMl7A3CH5trGt0D85ma8bm1LCPH3YVox/w8wjuEffIj0zZ5zhxEAAAAASUVORK5CYII=" />
+          </td>
+        </tr-->
+        <tr>
+          <td align="right">
+            Username
+          </td>
+          <td>
+            :
+          </td>
+          <td id="cursor_for_user_username" style="font-weight: bold; font-size: 28px;">
+          </td>
+          <td>
+            <%= text_field(:user, :username, :textCase => "lower", :placeholder => "username", :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 1) %>
+          </td>
+          <td rowspan="2" align="center" style="vertical-align: middle;">
+            <button class="blue" style="width: 150px; height: 122px;" tabindex=3 >Login</button>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Password
+          </td>
+          <td>
+            :
+          </td>
+          <td id="cursor_for_user_password" style="font-weight: bold; font-size: 28px;">
+          </td>
+          <td>
+            <%= password_field(:user, :password, :textCase => "lower", :placeholder => "password", :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 2) %>
+          </td>
+        </tr>
+        <tr>
+        </tr>
+
+      </table>
+
+  <% end %>
+
+</div>
+
+<div id="cursor" style="color: blue;">&#9654;</div>
+
+<div id="keyboard-container" style="position: absolute; border-top: #3465a4 solid 1px;  border-bottom: #3465a4 solid 1px; height: 260px; bottom: 28px;width: 80%; left: 10%; min-width: 700px; "></div>
+
+<script>
+
+    var ticked = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAHo0lEQVRogd1aO2gUXRS+M7PPLOvGza7uzE52EUlCUARrW0GwEu1EWwvBRyl2FhJB0ih2adLYpJOAkEYXFAwq2tjYCEHFwse+Z+e131+Ec3LvZPP6Y7L5/wuHTGbvvXO+e879zjl3RsRiMQghIIRAPB7na8Mw+HrYous6X6dSKQghkMlkIISApmlyX4FkMgld10HAMpkMEokEdx6mkE6GYUDXdWiahpGREWiaxvdIhGyNVCqFdDo90FIHSZLJJIQQkL2KLROLxdh8JAM6DkUMw0A6neaFJY8ZqF8ikYCmadB1HZlMBul0GtPT0ygWizh69Cgsy9pTKZfLm0oul4Nt27BtG/l8HuVyGbZtIx6PI5vNwjAMFiGEwKFDhxjd+Pg42u02qPX7/aEKAPi+j16vxzqFYYipqSkmB2XPEFvEYjFYlsUDwjDEsJvjOHBdl/+n63w+v55xCcjIyAiEEDBNk1ckCII9V3a71nFdF91ul8eVSiVmN4meVa62bZstQhPtdZNdiJ4ru3qz2eR+pFu1Wh1EGMMF4zgOPysKqt1u8++NRgMA4HkeAODYsWMHD0z0Oa7rot1uK/darZby1/M85HI5ZLPZgweGNnUUVK/Xg+d5qNfr6Ha7yu+WZR1MywBAp9OB7/sAVomHdFheXsa7d++43+/fvwEAx48fP7hg/vz5A2DNzQCgVqshn8+jUCjg6dOn3DcMQxSLRSUBPRBgWq0Wer0efN9Hv9/n+La4uIhqtcpJcD6fZ53CMIRt24Nzs2FbhhiL/j5//hzFYlHJE+PxOBMAsBpn9t3NaB+EYcjXMg37vq/cf/PmDSqVCjRN45olk8lgfn5e0enIkSPD2zOkvBwMyRKu6yIMQ3z69AnT09NcxySTScTjcTx+/BjNZlOJQ/l8XilX9g2MnIbQvJ1Oh4H0ej18//4dlUqF037S5/79+7wAvV6PmW5oGQBFbVKE5qWo/vXrV4VqSZ/bt2+zLgQoCAK4rovJycn9ByPPRVYA1uLFt2/fcObMGd4bxFA3b97Ez58/mb08z+PENwgCmKa5/2wmZ76yuwDAr1+/cP78eS4OSblr166h2WwyeMoQ5FKgUChw+bzvBNDtdjmWEHudPXsWQghFqQsXLqDT6ShEQdmBzHzlcnn/3SwIAniex0rQ6p47d47rEXpuuVzmZ/b7fXS7XXS7XdYnCILtgZEnpcFhGDITdTod3sg0IT10UBEXrVI9z+NYc+vWLSUVMQwDlUpFGfPjxw+eh4iDLAsApmnuHAwpIv8fhiEcx1GYCQCvZBRQvV7ne/fu3eNgGIvFkEgkMDU1xX06nQ4vTr1e5/SGFm1XYCgmNBoNzMzMcKAjCwVBwPfkcwOyJFWJ/X4fd+7c4aMiAlOpVPDlyxcFMC0ejSORLbdpCbARGFqlDx8+YHJyEqVSCZ8/f1ZcSLYSjaGgSKDv3r3LGz2ZTPKx1vv379majUaDnycTRdTSBCZyNLs1GMdx8OLFC5w+fRpCCGSzWZw6dQofP34EsLopZZ+mze55Hm/2J0+eoFAo8EEe5V2vXr1SALuuy2NoDrlFi7Mdg+n1erhy5Qp0XcfIyAif705PT2N5eVk524q6SRAEWFhYUDJgIQQsy0KtVgMAzrkoP5NJJ9q2XWluBIbSbgpu5OvJZBJjY2NYWlpiy8ji+z6WlpY4EGazWR6zuLjIG52AywBardbAMzv53r9mM/L/ixcvrjNtLpfDy5cvuT+NqdVqyOVy0DSNs1td1zE/P6+cy9FCUM4lR/ko5e8YzPj4uGJOSj3ozOr69euKhRKJBDKZDJ49e8Zu8/btW9i2rSSNQgjMzs6yUrLS222yXtu2jByF+/0+uwKdYz148EBRNJ1OY2xsDHNzc1hZWcHJkyc5cUwmk9A0DY8ePWL3o82+L2BkmnVdl/2bzN7tdjE7O4tYLAbDMDh25PN5TExMQAihxJOHDx8yQXiex5XmRhv9r4Epl8scaeWU2/d9Tv6IFGZmZpTJqKgqlUpct9+4cYP7EyC5wtx3MGQNWRHajHNzczh8+DC7HR3ACyFw+fJl7k/MtZu3C7t2M9/3OSXxfR+O4yhR2nEcLCwsYHR0VHltePXq1XWKNJtNtk6r1dpxVv5XCABYK3HpvpyuAMDr16950kuXLqFer3NK0ul0lMMIuVbZUzBRao6uXhAEyjER+X2j0eBkcWVlhceRS8mF1Z67GUVq0zT54YMmk08dieHk4BeVQS+OdtooOwfWyIfimCK6rsMwDMUym7FMFNB2ZLM3Ylu1jYq8SqUy6MOL1UhOoGzb5lWIvvwZBEwGOAjkbiwiN7lkBtbcTP4AQkQ/YrAsa8PiaDOLkKvR3vA8jwPkZhbZ6n2mvKDy2FKpxF9qMBhd15FKpfi4p1AoAFg1J9HnVhIFJZ+k7Ha/AGu1jRz3xsbGBhMA5U+0ZwZt/p20vwFAbtEizXEcPtFUPmqgwwVKDOPxOE6cOIHR0VFYlgXTNLf8ysI0zR3LdsdaloVqtQrTNFEqlZDL5TAxMcHvbGKxGAtbhpiBLCQznCzRr442+20z4a8q1rvKOqHMIh6Pcwih8wRFl+jk8sHcQRVZX/kzrf88GEXn/wMYwvAPUxHGoP1JteQAAAAASUVORK5CYII=";
+
+    var unticked = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAACV0lEQVRoge2a3arqMBCFp0ljW6tW/EETo15tUXz/J1NQW+s6F5KhVfdt4z5kwYIUIszXmY4XMxTHMYgIRASlFJ+llHz27WaMWZaBiDAYDEBEiKKoeZeQJAmEEPyjPM/R6/X4sk8rpRBFEeI4hpQSQgjkec7xCiHY1MxGmqZM/pqpb3Kapr/F90yju/AptT4tpUSWZRy4q5iP8fV6PURRxOnLsgyHwwHz+RyLxQLGGK8uigLWWlhrMZlMsFqtYK2FUgrD4RBSSjYREUajEdOt12ucz2c4PR4PrwaAqqpwvV5bMe33exDR+zcjhODUGWMAAHVdo65r+Nb1ekVZlvzszpPJ5L3UHEi/3wcRQWvNb+R+v3sB+KSyLFvZ0VojjmPuetwAmr3aWssZcVDfomY8WutPDSPAeFGACTAdKMAEmA4UYAJMBwowAaYDBZgA04ECTIDpQAEmwHSgABNgOlCACTAdKMD8eRg3hdJaA3iO3r5FVVXx4Ot0OgEArLXvMEIISCk5O+v1GrfbzWfsLb2OIsuyRF3X2Gw2nxYviJcDpJSw1vJbaI7dfOt+v7eqxZVZcwGCXpcYjDGtgajvafPrlNlpuVyi3++3YYQQSNOUdwFmsxmAZzpdffpWVVUoy7I1MJ5Op58bQJIkrW/mmz5+AK1KAYDL5YLdbgciai815HnOZHmeQymF4/GI8XgMYwy01l5tjMF2u4XWGsvlEkVR4OfnB0II3gVw5sy4zuAy1Oxwvu32ZpRS/BeSJMl7A3CH5trGt0D85ma8bm1LCPH3YVox/w8wjuEffIj0zZ5zhxEAAAAASUVORK5CYII=";
+
+    var checked = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAABR0lEQVRoge3XwQ2DMAwF0D9CuXFiDQ7M0TmYhSE4sgPDdAOOPbQXkCrUQoK/Y5PyJasSKrGfqFICXPmPvCLLXWIBLmEshClKC5EclQqiCmIOYorSbJoUlKqReh+L37RaT6vdht7XAqEygwcIbZZsMJ4g4plYkALAHUAP4AHgOX/28/Uicr3ouRhP5Qag21lrqW7+vgTzczYppA5ErKsWguiY5iBkqYaJkUBKIWSpkgWSYAYSZrDGVCTIUpUWJiQtGdMG9FTDjGTMaImZyJjpwpAwIxkzWmJOswGEgE6zNYc+nWz+NAGHrzNSkKsXTSkGOMkRIAbk5nC2dVNszI/NWzcdAbEimskTSDxLVhjaIsJQZ9jbjbSi0jdke2VHtWfI4gxUqj7BjY4001yb0nSvOXMtUY4MIin1ZAP5TBaIdbJAfMvpAW7yBscVNDEbcvgxAAAAAElFTkSuQmCC";
+
+    var unchecked = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAA1klEQVRoge3VSwrDQAwD0Nz/0slqIISQjD+yNR4LsmstPVra4+jskVP40EUKoIR5IVJRKEQ4KgoCBXkOSUUhS0NBUUXwnozvNKwz69fGvTcDAdnAAHHbUgbDBDFvYoOMiHcxfioj4m2skJE9MeyQkamdjUmIGsOaxrCmMaxpDCOo/2eWxohemBTRvi0wDCDVttUwqjdlgkybmEDmLaUwbkeMcd3wdQyJgvT+HUWAoJ0zxz1QUT3TRZoy5G2X0r9yz1umaIZYHnjKQO4pgXimBOItywNocgGEy/Un+XVEVwAAAABJRU5ErkJggg==";
+
+    var contextTouch = <%= (!session[:touchcontext].blank? and session[:touchcontext] == "touch" ? true : false) %>;
+
+    var ignore = false;
+
+    function __$(id) {
+        return document.getElementById(id);
+    }
+
+    function resize() {
+        if (__$("display")) {
+            __$("display").style.height = (window.innerHeight - 60) + 'px';
+        }
+
+        if (__$("logo")) {
+
+            __$("logo").setAttribute("height", (window.innerHeight - 60) * 0.25);
+
+        }
+    }
+
+    function changeState(state) {
+
+        var url = "/set_context/" + state;
+
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function () {
+            handleResult(httpRequest);
+        };
+        try {
+            httpRequest.open('GET', url, true);
+            httpRequest.send(null);
+        } catch (e) {
+        }
+    }
+
+    function handleResult(aXMLHttpRequest, page, pagesize) {
+        if (!aXMLHttpRequest) return;
+
+        if (aXMLHttpRequest.readyState == 4 && (aXMLHttpRequest.status == 200 ||
+                aXMLHttpRequest.status == 304)) {
+
+            var result = aXMLHttpRequest.responseText;
+
+            if(contextTouch){
+
+                if(__$("user_username")){
+
+                    __$("user_username").onfocus = function(){
+
+                        if(!ignore) {
+
+                            ignore = true;
+
+                            showKeyboard(this, undefined, undefined, true);
+
+                            setTimeout("ignore = false", 500);
+                        }
+
+                    }
+
+                    __$("user_username").onclick = function(){
+
+                        if(!ignore) {
+
+                            ignore = true;
+
+                            showKeyboard(this, undefined, undefined, true);
+
+                            setTimeout("ignore = false", 500);
+                        }
+
+                    }
+
+                }
+
+                if(__$("user_password")){
+
+                    __$("user_password").onfocus = function(){
+
+                        if(!ignore) {
+
+                            ignore = true;
+
+                            showKeyboard(this, undefined, undefined, true);
+
+                            setTimeout("ignore = false", 500);
+                        }
+
+                    }
+
+                    __$("user_password").onclick = function(){
+
+                        if(!ignore) {
+
+                            ignore = true;
+
+                            showKeyboard(this, undefined, undefined, true);
+
+                            setTimeout("ignore = false", 500);
+                        }
+
+                    }
+
+                }
+
+            }else {
+
+                if(__$("user_username")){
+
+                    __$("user_username").onfocus = function(){}
+
+                    __$("user_username").onclick = function(){}
+
+                }
+
+                if(__$("user_password")){
+
+                    __$("user_password").onfocus = function(){}
+
+                    __$("user_password").onclick = function(){}
+
+                }
+
+            }
+
+        }
+    }
+
+    function switchContext(){
+
+        if(contextTouch){
+
+            if(__$("touch")){
+
+                __$("touch").setAttribute("src", unticked);
+
+            }
+
+            changeState("default");
+
+        } else {
+
+            if(__$("touch")){
+
+                __$("touch").setAttribute("src", ticked);
+
+            }
+
+            changeState("touch");
+
+        }
+
+        contextTouch = !contextTouch;
+
+    }
+
+    if(contextTouch) {
+        contextTouch = false;
+
+        switchContext();
+    }
+
+    function changeFocusToMe(control){
+
+        if(control) {
+
+            if(__$("cursor_for_" + control.id)){
+
+                if(__$("cursor")){
+
+                    __$("cursor_for_" + control.id).appendChild(__$("cursor"));
+
+                }
+
+            }
+
+            showFixedKeyboard(control, __$("keyboard-container"), undefined, undefined, true);
+
+        }
+
+    }
+
+    changeFocusToMe(__$("user_username"));
+
+</script>
+
+</body>
+</html>
