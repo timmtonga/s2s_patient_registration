@@ -14,6 +14,14 @@ class Patient < ActiveRecord::Base
     self.first_name + " " +self.middle_name + " " + self.fathers_name + " " +self.mothers_name
   end
 
+  def first_names
+    self.first_name + " " +self.middle_name
+  end
+
+  def last_names
+    self.fathers_name + " " +self.mothers_name
+  end
+
   def age
     return (Date.today.year - self.birthdate.year).to_i rescue "Unknown"
   end
@@ -107,10 +115,10 @@ class Patient < ActiveRecord::Base
     label.font_horizontal_multiplier = 2
     label.font_vertical_multiplier = 2
     label.left_margin = 50
-    label.draw_barcode(130,180,0,1,5,15,120,false,"#{self.patient_identifier}")
-    label.draw_multi_text("#{self.fullname.titleize}", {}) #dummy
+    label.draw_barcode(30,214,0,1,5,15,120,false,"#{self.patient_identifier}")
+    label.draw_multi_text("#{self.first_names.titleize}", {})
+    label.draw_multi_text("#{self.last_names.titleize}", {})
     label.draw_multi_text("#{self.formatted_pnid} #{self.birthdate_formatted}#{sex}")
-    label.draw_multi_text("#{self.birthdate}")
     label.print(1)
   end
 
