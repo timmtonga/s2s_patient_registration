@@ -1,0 +1,101 @@
+<!DOCTYPE=html>
+<html>
+<head>
+  <title>Current Visit</title>
+  <style>
+      .arrow-right {
+          width: 0;
+          height: 0;
+          border-top: 180px solid transparent;
+          border-left: 40px solid #ccc;
+          border-bottom: 180px solid transparent;
+          cursor: pointer;
+      }
+
+      .arrow-left {
+          width: 0;
+          height: 0;
+          border-top: 180px solid transparent;
+          border-right: 40px solid #ccc;
+          border-bottom: 180px solid transparent;
+          cursor: pointer;
+      }
+
+      .arrow-left:hover{
+          border-right: 40px solid #999;
+      }
+
+      .arrow-right:hover{
+          border-left: 40px solid #999;
+      }
+  </style>
+</head>
+<body style="margin: 10px; overflow: auto; font-family: Helvetica;">
+<div style="display: table; width: 100%; border: 0px solid #eee; height: 99%;">
+  <div style="display: table-row;">
+    <div style="display: table-cell; vertical-align: top; padding-top: 10px; width: 100px; text-align: center;">
+      <div style="font-size: 32px; color: #305d97; margin: auto;">Patient Registration Summary      </div>
+
+      <table width="100%" style="border: 1px solid #305d97; margin-top: 10px; font-size: 24px;" cellpadding="10" cellspacing="0">
+        <tr style="color: #305d97;">
+          <th style="border-right: 1px solid #305d97; border-bottom: 1px solid #305d97;">
+            Duration
+          </th>
+          <th style="border-right: 1px solid #305d97; border-bottom: 1px solid #305d97;">
+            Clinic
+          </th>
+          <th style="border-bottom: 1px solid #305d97;">
+            User
+          </th>
+        </tr>
+        <tr>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            Today
+          </td>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            <%= @day_total %>
+          </td>
+          <td style="text-align: center;">
+            <%= @day_user %>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            This Month
+          </td>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            <%= @month_total %>
+          </td>
+          <td style="text-align: center;">
+            <%= @month_user %>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            This Year
+          </td>
+          <td style="border-right: 1px solid #305d97; text-align: center;">
+            <%= @year_total %>
+          </td>
+          <td style="text-align: center;">
+            <%= @year_user %>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="border-right: 1px solid #305d97; border-top: 1px solid #305d97; font-weight: bold; color: #305d97;">
+            Total Registered
+          </td>
+          <td style="border-right: 1px solid #305d97; border-top: 1px solid #305d97; font-weight: bold; color: #305d97; text-align: center;">
+            <%= @total %>
+          </td>
+          <td style="border-top: 1px solid #305d97; font-weight: bold; color: #305d97; text-align: center;">
+            <%= @total_user %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -101,6 +101,18 @@ class PatientsController < ApplicationController
 
   end
 
+  def summary
+
+    @day_total = Patient.where("DATE(created_at) = ?", Date.today).length
+    @day_user = Patient.where("DATE(created_at) = ? AND creator = ?", Date.today, User.current.id).length
+    @month_total = Patient.where("DATE(created_at) BETWEEN ? AND ?", Date.today.beginning_of_month,Date.today.end_of_month).length
+    @month_user= Patient.where("DATE(created_at) BETWEEN ? AND ? AND creator = ?", Date.today.beginning_of_month,Date.today.end_of_month, User.current.id).length
+    @year_total= Patient.where("DATE(created_at) BETWEEN ? AND ?", Date.today.beginning_of_year,Date.today.end_of_year).length
+    @year_user= Patient.where("DATE(created_at) BETWEEN ? AND ? AND creator = ?", Date.today.beginning_of_year, Date.today.end_of_year, User.current.id).length
+    @total = Patient.all.length
+    @total_user = Patient.where("creator = ?", User.current.id).length
+  end
+
   private
   def patient_params
     params.require(:patient).permit(:first_name, :middle_name,:fathers_name, :mothers_name, :birthdate, :gender,

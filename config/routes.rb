@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/login" => "users#login"
   post "/login" => "users#login"
   get '/logout' => "users#logout"
+  post "/users/update_user"
+  get "/query_users" => "users#query"
 
   ###### Patient Controller #########
   get "/search_first_name" => "patients#first_names"
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   get "/provinces" => "patients#province"
   get "/barrios" => "patients#barrios"
   get "/search_by_patient_id" => "patients#find_by_npid"
+  get "/summary" => 'patients#summary'
 
   resources :patients
   resources :users

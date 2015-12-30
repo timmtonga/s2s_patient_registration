@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :fathers_name, presence: true
   validates :mothers_name, presence: true
   validates :role, presence: true
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 6 }
 
   before_save :encrypt_password
 
@@ -34,8 +34,10 @@ class User < ActiveRecord::Base
   end
 
   def encrypt_password
-    self.salt = User.random_string(10)
-    self.password = encrypt(self.password, self.salt)
+    if salt.blank?
+      self.salt = User.random_string(10)
+      self.password = encrypt(self.password, self.salt)
+    end
   end
 
   def encrypt(password,salt)
