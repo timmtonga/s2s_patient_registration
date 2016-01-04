@@ -1,0 +1,33 @@
+en:
+  activerecord:
+    attributes:
+      patient:
+        first_name: "First Name"
+        gender: "Gender"
+  forms:
+    buttons:
+      edit: "Edit"
+      submit: "Submit"
+      next: "Next"
+  menu:
+    register: "Register Patient"
+    find_by_name: "Find by name"
+    logout: "Logout"
+    scan_barcode: "Scan Barcode"
+    administration: "Administration"
+    overview: "Overview"
+    facility: "Facility"
+    location: "Location"
+    date: "Date"
+    user: "User"
+    patient_registration: "Patient Registration"
+    patient_registration_summary: "Patient Registration Summary"
+    duration: "Duration"
+    clinic: "Clinic"
+    today: "Today"
+    this_month: "This Month"
+    this_year: "This Year"
+    total_registered: "Total Registered"
+    gender: "Gender"
+    maritals_status: "Marital status"
+    finish: "Finish"
