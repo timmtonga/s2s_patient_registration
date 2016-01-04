@@ -22,6 +22,10 @@ class Patient < ActiveRecord::Base
     self.fathers_name + " " +self.mothers_name
   end
 
+  def search_result_format
+      return fullname + " ( #{self.patient_identifier} - #{self.gender.titleize} - Age: #{self.age})"
+  end
+
   def age
     return (Date.today.year - self.birthdate.year).to_i rescue "Unknown"
   end
@@ -67,10 +71,10 @@ class Patient < ActiveRecord::Base
     if self.birthdate_estimated==1
       if self.birthdate.blank?
         "??/??/??"
-      elsif self.birthdate.day == 1 and self.birthdate.month == 7
-        self.birthdate.strftime("??/???/%Y")
       elsif self.birthdate.day == 15
         self.birthdate.strftime("??/%b/%Y")
+      elsif self.birthdate.day == 1
+        self.birthdate.strftime("??/???/%Y")
       else
         self.birthdate.strftime("%d/%b/%Y")
       end
@@ -106,6 +110,18 @@ class Patient < ActiveRecord::Base
     return checkdigit
   end
 
+  def birthdate_printable
+    if self.birthdate_estimated
+      if self.birthdate.day == 15
+        self.birthdate.strftime("??/%b/%Y")
+      else
+        self.birthdate.strftime("??/???/%Y")
+      end
+    else
+      self.birthdate.strftime("%d/%b/%Y")
+    end
+  end
+
   def create_label
 
     sex =  self.gender.match(/F/i) ? "(F)" : "(M)"
@@ -118,17 +134,17 @@ class Patient < ActiveRecord::Base
     label.draw_barcode(30,260,0,1,5,15,80,false,"#{self.patient_identifier}")
     label.draw_multi_text("#{self.first_names.titleize}", {})
     label.draw_multi_text("#{self.last_names.titleize}", {})
-    label.draw_multi_text("#{self.formatted_pnid} #{self.birthdate_formatted}#{sex}")
+    label.draw_multi_text("#{self.formatted_pnid} #{self.birthdate_printable}#{sex}")
     label.draw_multi_text("#{self.current_residence}", {})
     label.print(1)
   end
 
   def current_residence
-      return self.province_of_residence + " / " + self.barrio_of_residence
+      return self.province_of_residence + "/" + self.barrio_of_residence
   end
 
   def place_of_birth
-
+    return self.region_of_birth + "/" + self.province_of_birth
   end
 
   private

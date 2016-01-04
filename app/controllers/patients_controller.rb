@@ -156,11 +156,10 @@ class PatientsController < ApplicationController
   end
 
   def search_results
-    @patients = Patient.where("fname_namecode = ? AND (mname_namecode = ? OR fathers_name_namecode = ? OR mothers_name_namecode = ?)",
+    @patients = Patient.where("fname_namecode = ? OR (mname_namecode = ? OR fathers_name_namecode = ? OR mothers_name_namecode = ?)",
                               params[:patient][:first_name].soundex,params[:patient][:middle_name].soundex,
                               params[:patient][:fathers_name].soundex, params[:patient][:mothers_name].soundex)
 
-    @targeturl = "/"
     render :layout => "touch"
   end
 
