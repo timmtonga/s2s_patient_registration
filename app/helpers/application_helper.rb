@@ -19,7 +19,7 @@ module ApplicationHelper
                ["Pintor","pintor"],["Vendedor","vendedor"],["Secretario","secretario"],["Criado","criado"],
                ["Asistente social","asistente social"],["Estudiante","estudiante"],["Maestro","maestro"],
                ["Mesero","mesero"]]
-     return options
+     return options.sort
   end
 
   def roles
