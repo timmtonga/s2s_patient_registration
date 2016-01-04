@@ -1,6 +1,6 @@
 <%= form_for :patient, url: patients_path do |f| %>
     <fieldset>
-      <legend>Patient Details</legend>
+      <legend><%= t('forms.legends.patient_details') %></legend>
 
       <div class="field">
         <%= f.label :first_name %>
@@ -25,7 +25,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Patient Details cont'd</legend>
+      <legend><%= t('forms.legends.patient_details_cont') %></legend>
 
       <div class="field">
         <label for="gender">Gender</label><br>
@@ -69,7 +69,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Patient Details cont'd</legend>
+      <legend><%= t('forms.legends.patient_details_cont') %></legend>
       <%= f.label :region_of_birth %>
       <br>
       <%= (f.text_field "region_of_birth", :class => 'input_cell', :ajaxURL => "/regions",
@@ -81,7 +81,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Patient Details cont'd</legend>
+      <legend><%= t('forms.legends.patient_details_cont') %></legend>
       <%= f.label :region_of_residence %>
       <br>
       <%= (f.text_field "region_of_residence", :class => 'input_cell', :ajaxURL => "/regions",
@@ -98,7 +98,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Patient Details cont'd</legend>
+      <legend><%= t('forms.legends.patient_details_cont') %></legend>
 
       <div class="field">
         <%= f.label :occupation %>

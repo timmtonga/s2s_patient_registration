@@ -5,6 +5,9 @@ en:
         first_name: "First Name"
         gender: "Gender"
   forms:
+    legends:
+      patient_details: "Patient Details"
+      patient_details_cont: "Patient Details cont'd"
     buttons:
       edit: "Edit"
       submit: "Submit"
@@ -31,3 +34,7 @@ en:
     gender: "Gender"
     maritals_status: "Marital status"
     finish: "Finish"
+    current_visit: "Current Visit"
+    edit_demographics: "Edit Demographics"
+    print_barcode: "Print Barcode"
+    logged_in_as: "logged in as"

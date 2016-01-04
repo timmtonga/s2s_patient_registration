@@ -31,11 +31,11 @@
             <td style="vertical-align: middle;">
               <div style="border: 1px solid #ccc; color: #ccc; border-radius: 20px; padding: 2px; font-size: 0.4em;
                       height: 20px; padding-left: 20px; padding-right: 20px;">
-                Logged in as : <%= User.current.username rescue nil %>
+                <%= t('menu.logged_in_as') %> : <%= User.current.username rescue nil %>
               </div>
             </td>
             <td>
-              Patient Registration <sub style="font-size: 11px;"><%#= app_version %></sub>
+              <%= t('menu.patient_registration') %> <sub style="font-size: 11px;"><%#= app_version %></sub>
             </td>
           </tr>
         </table>

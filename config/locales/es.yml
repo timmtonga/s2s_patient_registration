@@ -26,6 +26,9 @@ es:
         first_name: "Primer nombre"
         gender: "Género"
   forms:
+    legends:
+        patient_details: "Detalle del paciente"
+        patient_details_cont: "Detalle del paciente .."
     buttons:
       edit: "Editar"
       submit: "Submit"
@@ -52,3 +55,7 @@ es:
     gender: "Género"
     maritals_status: "Estado civil"
     finish: "Terminar"
+    current_visit: "Visita actual"
+    edit_demographics: "Editar datos demográficos"
+    print_barcode: "Imprimir código de barras"
+    logged_in_as: "conectado como"

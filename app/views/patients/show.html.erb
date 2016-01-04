@@ -7,7 +7,7 @@
 
 <div id="home">
 
-  <input type="text" id="appname" value="Patient<br/>Registration" />
+  <input type="text" id="appname" value="<%= t('menu.patient_registration').split(' ').join("<br/>") %>" />
 
   <div id="patient-card">
 
@@ -32,9 +32,9 @@
   </div>
 
   <select id="tabs">
-    <option value="">Current Visit</option>
-    <option value="/demographics/<%=@patient.id%>">Edit Demographics</option>
-    <option value="/print_barcode?patient_id=<%=@patient.id%>">Print Barcode</option>
+    <option value=""><%=  t('menu.current_visit') %></option>
+    <option value="/demographics/<%=@patient.id%>"><%=  t('menu.edit_demographics') %></option>
+    <option value="/print_barcode?patient_id=<%=@patient.id%>"><%=  t('menu.print_barcode') %></option>
   </select>
 
 </div>

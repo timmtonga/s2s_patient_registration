@@ -59,7 +59,7 @@
     <tr>
       <th>Name</th>
       <td class="data"><%=@patient.fullname%></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=name", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=name", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
@@ -67,7 +67,7 @@
     <tr>
       <th>Gender</th>
       <td><%=@patient.gender%></td>
-      <td class="data"><%= link_to "Edit","/patients/#{@patient.id}/edit?section=gender", target: "_parent",
+      <td class="data"><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=gender", target: "_parent",
                                    :class => "anchor_class" %>
       </td>
     </tr>
@@ -75,7 +75,7 @@
     <tr>
       <th>Marital Status</th>
       <td><%=@patient.marital_status%></td>
-      <td class="data"><%= link_to "Edit","/patients/#{@patient.id}/edit?section=marital_status", target: "_parent",
+      <td class="data"><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=marital_status", target: "_parent",
                                    :class => "anchor_class" %>
       </td>
     </tr>
@@ -83,7 +83,7 @@
     <tr>
       <th>Date of birth</th>
       <td class="data"><%=@patient.birthdate_formatted%></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=birthdate", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=birthdate", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
@@ -91,7 +91,7 @@
     <tr>
       <th>National ID</th>
       <td class="data"><%=@patient.nat_id%></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=national_id", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=national_id", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
@@ -99,7 +99,7 @@
     <tr>
       <th>Place of birth</th>
       <td class="data"><%=@patient.place_of_birth %></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=place_of_birth", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=place_of_birth", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
@@ -107,7 +107,7 @@
     <tr>
       <th>Area of residence</th>
       <td class="data"><%=@patient.current_residence%></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=current_residence", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=current_residence", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
@@ -115,9 +115,10 @@
     <tr>
       <th>Occupation</th>
       <td class="data"><%=@patient.occupation%></td>
-      <td><%= link_to "Edit","/patients/#{@patient.id}/edit?section=occupation", target: "_parent",
+      <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=occupation", target: "_parent",
                       :class => "anchor_class" %>
       </td>
     </tr>
   </table>
+</div>
 </div>
