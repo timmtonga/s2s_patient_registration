@@ -11,35 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221161858) do
+ActiveRecord::Schema.define(version: 20160104035703) do
 
   create_table "patients", primary_key: "patient_id", force: :cascade do |t|
-    t.string   "patient_identifier",     limit: 255
-    t.string   "first_name",             limit: 255
-    t.string   "middle_name",            limit: 255
-    t.string   "fathers_name",           limit: 255
-    t.string   "mothers_name",           limit: 255
-    t.string   "fname_namecode",         limit: 255
-    t.string   "mname_namecode",         limit: 255
-    t.string   "fathers_name_namecode",  limit: 255
-    t.string   "mothers_name_namecode",  limit: 255
-    t.string   "gender",                 limit: 255
+    t.string   "patient_identifier",    limit: 255
+    t.string   "first_name",            limit: 255
+    t.string   "middle_name",           limit: 255
+    t.string   "fathers_name",          limit: 255
+    t.string   "mothers_name",          limit: 255
+    t.string   "fname_namecode",        limit: 255
+    t.string   "mname_namecode",        limit: 255
+    t.string   "fathers_name_namecode", limit: 255
+    t.string   "mothers_name_namecode", limit: 255
+    t.string   "gender",                limit: 255
     t.date     "birthdate"
-    t.boolean  "birthdate_estimated",    limit: 1,   default: false
-    t.string   "marital_status",         limit: 255
-    t.string   "occupation",             limit: 255
-    t.string   "social_security_number", limit: 255
-    t.string   "region_of_birth",        limit: 255
-    t.string   "province_of_birth",      limit: 255
-    t.string   "region_of_residence",    limit: 255
-    t.string   "province_of_residence",  limit: 255
-    t.string   "barrio_of_residence",    limit: 255
-    t.integer  "creator",                limit: 4
+    t.boolean  "birthdate_estimated",   limit: 1,   default: false
+    t.string   "marital_status",        limit: 255
+    t.string   "occupation",            limit: 255
+    t.string   "national_id",           limit: 255
+    t.string   "region_of_birth",       limit: 255
+    t.string   "province_of_birth",     limit: 255
+    t.string   "region_of_residence",   limit: 255
+    t.string   "province_of_residence", limit: 255
+    t.string   "barrio_of_residence",   limit: 255
+    t.integer  "creator",               limit: 4
     t.date     "date_voided"
-    t.boolean  "voided",                 limit: 1,   default: false
-    t.integer  "voided_by",              limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.boolean  "voided",                limit: 1,   default: false
+    t.integer  "voided_by",             limit: 4
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|

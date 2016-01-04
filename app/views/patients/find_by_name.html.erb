@@ -1,0 +1,42 @@
+<%= form_for :patient, url: '/search_results' do |f| %>
+    <fieldset>
+      <legend>Search Details</legend>
+
+      <div class="field">
+        <%= f.label :first_name %>
+        <br>
+        <%= (f.text_field :first_name, :class => "input_cell", :ajaxURL => "/search_first_name") rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :middle_name %>
+        <br>
+        <%= (f.text_field :middle_name, :class => "input_cell", :ajaxURL => "/search_first_name", :optional => :true) rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :fathers_name %>
+        <br>
+        <%= (f.text_field :fathers_name, :class => "input_cell", :ajaxURL => "/search_last_name",:optional => :true) rescue "" %>
+      </div>
+      <div class="field">
+        <%= f.label :mothers_name %>
+        <br>
+        <%= (f.text_field :mothers_name, :class => "input_cell", :ajaxURL => "/search_last_name",:optional => :true) rescue "" %>
+      </div>
+    </fieldset>
+<% end %>
+
+
+<script>
+    init();
+
+    function afterLoad()
+    {
+        btnCancel.onmousedown = function () {
+
+            window.location = "/";
+
+        }
+
+    }
+    afterLoad()
+</script>

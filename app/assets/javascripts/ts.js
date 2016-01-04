@@ -4724,7 +4724,7 @@ function clickCanGo() {
                         if (eval(validationControl.value.trim()) < eval(parent.getAttribute("absolute_min"))) {
 
 
-                            showMsg("The value you entered is less than minimum allowable. \nPlease enter a valid date");
+                            showMsg("The date you entered is less than minimum allowable. \nPlease enter a valid date");
 
                             if (__$("cell" + i + ".3")) {
 
@@ -4797,12 +4797,7 @@ function clickCanGo() {
                 if (validationControl) {
 
                     var re = RegExp(parent.getAttribute("regex"));
-
-                    console.log(parent.getAttribute("regex_message"))
-                    console.log(validationControl.value)
-                    console.log(String(validationControl.value).trim().match(re))
-
-
+                    
                     if (validationControl.value.trim().match(re) == null) {
 
                         if (parent.getAttribute("regex_message") != null) {

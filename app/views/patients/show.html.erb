@@ -19,7 +19,7 @@
 
     <input type="text" id="Age" value="<%= @patient.age %>" />
 
-    <input type="text" id="Social Security #" value="<%= @patient.ssn %>"  />
+    <input type="text" id="National ID" value="<%= @patient.nat_id %>"  />
 
     <input type="text" id="Marital Status" value="<%= @patient.marital_status.titleize %>" />
 
@@ -33,7 +33,7 @@
 
   <select id="tabs">
     <option value="">Current Visit</option>
-    <option value="">Past Visits</option>
+    <option value="/demographics/<%=@patient.id%>">Edit Demographics</option>
     <option value="/print_barcode?patient_id=<%=@patient.id%>">Print Barcode</option>
   </select>
 

@@ -31,12 +31,12 @@ class Patient < ActiveRecord::Base
     return (id.blank? ? " " : (id[0..3] + "-" + id[4..6]))
   end
 
-  def ssn
-    (self.social_security_number.blank? ? "N/A" : ((self.social_security_number == "N/A") ? "N/A" : self.formatted_ssn ))
+  def nat_id
+    (self.national_id.blank? ? "N/A" : ((self.national_id == "N/A") ? "N/A" : self.formatted_nat_id ))
   end
 
-  def formatted_ssn
-    return self.social_security_number[0..2] + "-" + self.social_security_number[3..5]+ "-" + self.social_security_number[6..8]
+  def formatted_nat_id
+    return self.national_id[0..3] + "-" + self.national_id[4..7]+ "-" + self.national_id[8..12]
   end
 
   def format_birthdate(birthdate)
@@ -52,7 +52,7 @@ class Patient < ActiveRecord::Base
     month_i = Date::ABBR_MONTHNAMES.index(month) if month_i == 0 || month_i.blank?
 
     if month_i == 0 || month == "?"
-      birthdate = Date.new(year.to_i,7,1)
+      birthdate = Date.new(year.to_i,1,1)
     elsif day.blank? || day == "?" || day == 0
       birthdate = Date.new(year.to_i,month_i,15)
     else
@@ -115,11 +115,20 @@ class Patient < ActiveRecord::Base
     label.font_horizontal_multiplier = 2
     label.font_vertical_multiplier = 2
     label.left_margin = 50
-    label.draw_barcode(30,214,0,1,5,15,120,false,"#{self.patient_identifier}")
+    label.draw_barcode(30,260,0,1,5,15,80,false,"#{self.patient_identifier}")
     label.draw_multi_text("#{self.first_names.titleize}", {})
     label.draw_multi_text("#{self.last_names.titleize}", {})
     label.draw_multi_text("#{self.formatted_pnid} #{self.birthdate_formatted}#{sex}")
+    label.draw_multi_text("#{self.current_residence}", {})
     label.print(1)
+  end
+
+  def current_residence
+      return self.province_of_residence + " / " + self.barrio_of_residence
+  end
+
+  def place_of_birth
+
   end
 
   private
@@ -130,7 +139,7 @@ class Patient < ActiveRecord::Base
     self.mname_namecode = self.middle_name.soundex unless self.middle_name.blank?
     self.fathers_name_namecode = self.fathers_name.soundex
     self.mothers_name_namecode = self.mothers_name.soundex
-    self.creator = User.current.id
+    self.creator = User.current.id if self.creator.blank?
   end
 
   def next_identifier

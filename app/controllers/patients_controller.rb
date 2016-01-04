@@ -5,9 +5,6 @@ class PatientsController < ApplicationController
   end
 
   def new
-
-    @section = "Patient Regsitration"
-
     render :layout => "touch"
   end
 
@@ -25,7 +22,9 @@ class PatientsController < ApplicationController
   end
 
   def edit
-
+    @patient = Patient.find(params[:id])
+    @targeturl = "/patients/#{params[:id]}"
+    render :layout => "touch"
   end
 
   def show
@@ -36,8 +35,37 @@ class PatientsController < ApplicationController
     end
   end
 
-  def update
+  def update_patient
+    @patient = Patient.find(params[:id])
 
+    case params[:section]
+
+      when 'name'
+        @patient.update_attributes(:first_name => params[:patient][:first_name],:middle_name => params[:patient][:middle_name],
+                                   :fathers_name => params[:patient][:fathers_name], :mothers_name => params[:patient][:mothers_name])
+      when 'gender'
+        @patient.update_attributes(:gender => params[:patient][:gender])
+
+      when 'national_id'
+        @patient.update_attributes(:national_id => params[:patient][:national_id])
+      when 'birthdate'
+        @patient.birthdate = @patient.format_birthdate(params[:patient][:birthdate])
+        @patient.birthdate_estimated = params[:patient][:birthdate].include? "?"
+        @patient.save
+      when 'marital_status'
+        @patient.update_attributes(:marital_status => params[:patient][:marital_status])
+      when 'place_of_birth'
+        @patient.update_attributes(:region_of_birth => params[:patient][:region_of_birth],
+                                   :province_of_birth => params[:patient][:province_of_birth])
+      when 'current_residence'
+        @patient.update_attributes(:province_of_residence => params[:patient][:province_of_residence],
+                                   :region_of_residence => params[:patient][:region_of_residence],
+                                   :barrio_of_residence => params[:patient][:barrio_of_residence])
+      when 'occupation'
+        @patient.update_attributes(:occupation => params[:patient][:occupation])
+    end
+
+    redirect_to @patient
   end
 
   def destroy
@@ -59,7 +87,7 @@ class PatientsController < ApplicationController
     data = Patient.get_similar_last_names(params["search"])
 
     if data.present?
-      render :text => data.collect(&:fathers_name).uniq.join("\n") + data.collect(&:mothers_name).uniq.join("\n")
+      render :text => (data.collect(&:fathers_name) + data.collect(&:mothers_name)).uniq.join("\n")
     else
       render :text => ""
     end
@@ -68,19 +96,19 @@ class PatientsController < ApplicationController
 
   def region
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read).keys.sort rescue []
-    data << ["Other"]
+    data << ["Unknown"]
     render :text => data.join("\n")
   end
 
   def province
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read)[params[:region].strip].keys.sort rescue []
-    data << ["Other"]
+    data << ["Unknown"]
     render :text => data.join("\n")
   end
 
   def barrios
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read)[params[:region].strip][params[:province].strip].sort rescue []
-    data << ["Other"]
+    data << ["Unknown"]
     render :text => data.join("\n")
   end
 
@@ -91,7 +119,13 @@ class PatientsController < ApplicationController
   end
 
   def find_by_npid
-    @patient = Patient.find_by_patient_identifier(params[:identifier])
+
+    if params[:identifier].length == 7
+      @patient = Patient.find_by_patient_identifier(params[:identifier])
+    else
+      @patient = Patient.find_by_national_id(params[:identifier])
+    end
+
     if @patient.blank?
       flash[:message] = "Patient Not Found"
       redirect_to root_path
@@ -99,6 +133,10 @@ class PatientsController < ApplicationController
       redirect_to @patient
     end
 
+  end
+
+  def find_by_name
+    render :layout => "touch"
   end
 
   def summary
@@ -113,10 +151,23 @@ class PatientsController < ApplicationController
     @total_user = Patient.where("creator = ?", User.current.id).length
   end
 
+  def demographics
+    @patient = Patient.find(params[:id])
+  end
+
+  def search_results
+    @patients = Patient.where("fname_namecode = ? AND (mname_namecode = ? OR fathers_name_namecode = ? OR mothers_name_namecode = ?)",
+                              params[:patient][:first_name].soundex,params[:patient][:middle_name].soundex,
+                              params[:patient][:fathers_name].soundex, params[:patient][:mothers_name].soundex)
+
+    @targeturl = "/"
+    render :layout => "touch"
+  end
+
   private
   def patient_params
     params.require(:patient).permit(:first_name, :middle_name,:fathers_name, :mothers_name, :birthdate, :gender,
-                                    :occupation, :social_security_number, :marital_status,:region_of_birth,
+                                    :occupation, :national_id, :marital_status,:region_of_birth,
                                     :province_of_birth,:region_of_residence,:province_of_residence,:barrio_of_residence)
   end
 end

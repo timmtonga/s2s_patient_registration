@@ -37,6 +37,13 @@
       </div>
 
       <div class="field">
+        <%= f.label :national_id %>
+        <br>
+        <%= (f.text_field :national_id, :class => "input_cell", :optional => :true, :fieldtype => "decimal",
+                          :regex => '^\d{13}$|^N\/A$', :regex_message =>"Please enter a national id number") rescue "" %>
+      </div>
+
+      <div class="field">
         <label for="birthdate">Date of Birth</label>
         <br>
 
@@ -97,12 +104,7 @@
 
       </div>
 
-      <div class="field">
-        <%= f.label :social_security_number %>
-        <br>
-        <%= (f.text_field :social_security_number, :class => "input_cell", :optional => :true, :fieldtype => "decimal",
-                          :regex => '^\d{9}$|^N\/A$', :regex_message =>"Please enter a social security number") rescue "" %>
-      </div>
+
     </fieldset>
 <% end %>
 

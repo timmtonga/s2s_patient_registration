@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   get "/provinces" => "patients#province"
   get "/barrios" => "patients#barrios"
   get "/search_by_patient_id" => "patients#find_by_npid"
+  get "/search_by_name" => "patients#find_by_name"
   get "/summary" => 'patients#summary'
+  get "/demographics/:id" => "patients#demographics"
+  post "/search_results" => "patients#search_results"
+  post "/update_patient" => "patients#update_patient"
 
   resources :patients
   resources :users
