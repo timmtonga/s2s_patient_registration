@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'application/index'
   get "/administration" => 'application#administration'
   get "/reports" => 'application#reports'
+  get "/translate" => 'application#translate'
 
   ###### User Controller #########
   get "/username_availability" => "users#username_availability"

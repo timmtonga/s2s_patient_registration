@@ -1080,7 +1080,7 @@ function createMainPage(fieldset){
 																	"control":"div",
 																	"class":"cell",
 																	"style":"height: 45px; font-size: 28px; width: 190px; vertical-align: middle;",
-																	"content":'Scan Barcode'
+																	"content": 'Scan Barcode'
 																},
 																{
 																	"control":"div",
@@ -1415,9 +1415,7 @@ function createMainPage(fieldset){
 					break;	
 				case "facility":
 					__$("uifield1label").innerHTML = "&nbsp;";
-					
-					console.log(fields["facility"]);
-					
+
 					if(fields["facility"] != undefined){
 						
 						__$("uifield1label").innerHTML = fields["facility"];
@@ -1627,6 +1625,29 @@ function triggerPost(id, vid){
 	
 	setTimeout("triggerPost('" + id + "', '" + vid + "')", 500);
 	
+}
+
+function localise(text)
+{
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var results = xmlhttp.responseText;
+
+            if (results.length > 0) {
+                return results
+            } else {
+                return text;
+            }
+        }
+    }
+    xmlhttp.open("GET", '/translate?text=' +text, true);
+    xmlhttp.send();
+
 }
 
 function init(){

@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
     render :layout => nil
   end
 
+  def translate
+    text = params[:text].downcase.split(" ").join("_")
+    render :text => t("menu.#{text}")
+  end
+
   protected
 
   def check_logged_in

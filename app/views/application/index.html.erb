@@ -19,21 +19,21 @@
 
 <div id="main">
 
-  <input type="text" id="appname" value="Patient<br/>Registration" />
+  <input type="text" id="appname" value="<%= t('menu.patient_registration').split(' ').join("<br/>") %>" />
   <input type="text" id="facility" value="San Jose del Negrito" />
   <input type="text" id="location" value="San Pedro Sula" />
   <input type="text" id="datetoday" value="<%= Date.today.strftime('%d %B %Y') %>" />
   <input type="text" id="user" value="<%= User.current.fullname %>" />
 
   <div id="buttons">
-    <button onmousedown="window.location = '/patients/new'">Register Patient</button>
-    <button onmousedown="window.location = '/search_by_name'">Find by name</button>
-    <button onmousedown="window.location = '/logout'">Logout</button>
+    <button onmousedown="window.location = '/patients/new'"><%= t('menu.register') %></button>
+    <button onmousedown="window.location = '/search_by_name'"><%= t('menu.find_by_name') %></button>
+    <button onmousedown="window.location = '/logout'" style="float: left">Logout</button>
   </div>
 
   <select id="tabs">
-    <option value="/summary">Overview</option>
-    <option value="/administration">Administration</option>
+    <option value="/summary"><%= t('menu.overview') %></option>
+    <option value="/administration"><%= t('menu.administration') %></option>
   </select>
 
 </div>

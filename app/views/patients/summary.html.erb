@@ -34,23 +34,23 @@
 <div style="display: table; width: 100%; border: 0px solid #eee; height: 99%;">
   <div style="display: table-row;">
     <div style="display: table-cell; vertical-align: top; padding-top: 10px; width: 100px; text-align: center;">
-      <div style="font-size: 32px; color: #305d97; margin: auto;">Patient Registration Summary      </div>
+      <div style="font-size: 32px; color: #305d97; margin: auto;"><%= t('menu.patient_registration_summary')%></div>
 
       <table width="100%" style="border: 1px solid #305d97; margin-top: 10px; font-size: 24px;" cellpadding="10" cellspacing="0">
         <tr style="color: #305d97;">
           <th style="border-right: 1px solid #305d97; border-bottom: 1px solid #305d97;">
-            Duration
+            <%= t('menu.duration')%>
           </th>
           <th style="border-right: 1px solid #305d97; border-bottom: 1px solid #305d97;">
-            Clinic
+            <%= t('menu.clinic')%>
           </th>
           <th style="border-bottom: 1px solid #305d97;">
-            User
+            <%= t('menu.user')%>
           </th>
         </tr>
         <tr>
           <td style="border-right: 1px solid #305d97; text-align: center;">
-            Today
+            <%= t('menu.today')%>
           </td>
           <td style="border-right: 1px solid #305d97; text-align: center;">
             <%= @day_total %>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <td style="border-right: 1px solid #305d97; text-align: center;">
-            This Month
+            <%= t('menu.this_month')%>
           </td>
           <td style="border-right: 1px solid #305d97; text-align: center;">
             <%= @month_total %>
@@ -72,7 +72,7 @@
         </tr>
         <tr>
           <td style="border-right: 1px solid #305d97; text-align: center;">
-            This Year
+            <%= t('menu.this_year')%>
           </td>
           <td style="border-right: 1px solid #305d97; text-align: center;">
             <%= @year_total %>
@@ -84,7 +84,7 @@
 
         <tr>
           <td style="border-right: 1px solid #305d97; border-top: 1px solid #305d97; font-weight: bold; color: #305d97;">
-            Total Registered
+            <%= t('menu.total_registered')%>
           </td>
           <td style="border-right: 1px solid #305d97; border-top: 1px solid #305d97; font-weight: bold; color: #305d97; text-align: center;">
             <%= @total %>
