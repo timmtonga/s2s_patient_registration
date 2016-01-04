@@ -37,10 +37,13 @@
       </div>
 
       <div class="field">
-        <%= f.label :national_ %>
+        <label for="national_id">National ID</label>
         <br>
-        <%= (f.text_field :national_id, :class => "input_cell", :optional => :true, :fieldtype => "decimal",
-                          :regex => '^\d{13}$|^N\/A$', :regex_message =>"Please enter a national id number") rescue "" %>
+
+        <input id="national_id" name="national_id" type="text" value="<%= @patient[:national_id] rescue nil %>"
+               class="input_cell"
+               fieldtype="decimal"
+               regex = '^\d{13}$|^N\/A$', regex_message ="Please enter a national id number"/>
       </div>
 
       <div class="field">
