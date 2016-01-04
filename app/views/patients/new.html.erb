@@ -43,6 +43,7 @@
         <input id="national_id" name="national_id" type="text" value="<%= @patient[:national_id] rescue nil %>"
                class="input_cell"
                fieldtype="decimal"
+               optional="true"
                regex = '^\d{13}$|^N\/A$', regex_message ="Please enter a national id number"/>
       </div>
 
