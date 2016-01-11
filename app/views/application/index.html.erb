@@ -13,31 +13,40 @@
 
       setInterval("scanFocus()", 3000);
   </script>
+  <%= javascript_include_tag 'application' %>
+
 
 </head>
 <body>
 
 <div id="main">
 
-  <input type="text" id="appname" value="<%= t('menu.patient_registration').split(' ').join("<br/>") %>" />
+  <input type="text" id="appname" value="<%= t('menu.terms.patient_registration').split(' ').join("<br/>") %>" />
   <input type="text" id="facility" value="San Jose del Negrito" />
   <input type="text" id="location" value="San Pedro Sula" />
   <input type="text" id="datetoday" value="<%= Date.today.strftime('%d %B %Y') %>" />
   <input type="text" id="user" value="<%= User.current.fullname %>" />
 
   <div id="buttons">
-    <button onmousedown="window.location = '/patients/new'"><%= t('menu.register') %></button>
-    <button onmousedown="window.location = '/search_by_name'"><%= t('menu.find_by_name') %></button>
+    <button onmousedown="window.location = '/patients/new'">register</button>
+    <button onmousedown="window.location = '/search_by_name'">find_by_name</button>
+    <% if User.current.role.downcase == "administrator" %>
+        <button onmousedown="window.location = '/users'">user_management</button>
+    <% end %>
     <button onmousedown="window.location = '/logout'" style="float: left">Logout</button>
   </div>
 
   <select id="tabs">
-    <option value="/summary"><%= t('menu.overview') %></option>
-    <option value="/administration"><%= t('menu.administration') %></option>
+    <option value="/summary">Overview</option>
   </select>
 
 </div>
 
 </body>
 <%= javascript_include_tag 'dashboard' %>
+<% if flash[:message] %>
+    <script>
+        showMsg('<%= flash[:message] %>')
+    </script>
+<% end %>
 </html>

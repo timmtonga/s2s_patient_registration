@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
   end
 
   def fullname
-    self.first_name + " " +self.middle_name + " " + self.fathers_name + " " +self.mothers_name
+    (self.first_name.blank? ? '' : self.first_name) + " " + (self.middle_name.blank? ? '' : self.middle_name) + " " +
+        (self.fathers_name.blank? ? '' : self.fathers_name) + " " + (self.mothers_name.blank? ? '' : self.mothers_name)
   end
 
   def self.random_string(len)

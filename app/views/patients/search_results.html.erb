@@ -42,7 +42,7 @@
         border-width: 1px;
         text-align: left;
         word-wrap: break-word;
-        font-size: 1.5em;
+        font-size: 1.3em;
         line-height: 50px;
     }
     table.custom{
@@ -56,13 +56,13 @@
       <table class="record" style="margin: auto;" cellpadding="10" cellspacing="5">
         <tr>
           <td>
-            <h1> No patients were found</h1>
+            <h1><%= t("messages.no_match_found") %></h1>
           </td>
         </tr>
       </table>
 
-    <button id="btnAction" class="green" style="position: absolute; right: 30px; bottom: 60px;" onclick="window.location = '/'">Finish</button>
-    <button id="btnAction" class="blue" style="position: absolute; right: 160px; bottom: 60px;" onclick="window.location = '/search_by_name'">New Search</button>
+    <button id="btnAction" class="green" style="position: absolute; right: 30px; bottom: 60px;" onclick="window.location = '/'"><%= t('forms.buttons.finish') %></button>
+    <button id="btnAction" class="blue" style="position: absolute; right: 160px; bottom: 60px;" onclick="window.location = '/search_by_name'"><%= t('forms.buttons.new_search') %></button>
     <!-- <button id="btnAction" class="blue" style="position: absolute; right: 290px; bottom: 60px;" onclick="window.location = '<%#=  %>'">Edit</button> //-->
 
 <% else %>
@@ -96,36 +96,37 @@
         <hr>
         <table class="custom" style="width: 95%; margin-left: auto;margin-right: auto">
           <tr>
-            <td style="width: 49%;"> <span class="title"> National ID</span> </td><td>:</td><td style="width: 49%;" id="national_id">&nbsp;</td>
+            <td style="width: 49%;"> <span class="title"><%= t('forms.labels.national_id')%></span> </td><td>:</td><td style="width: 49%;" id="national_id">&nbsp;</td>
           </tr>
           <tr>
-            <td><span class="title"> Date of Birth</span></td><td>:</td><td id="dob">&nbsp;</td>
+            <td><span class="title"> <%= t('forms.labels.date_of_birth')%></span></td><td>:</td><td id="dob">&nbsp;</td>
           </tr>
           <tr>
-            <td><span class="title"> Region of Birth </span></td><td>:</td><td id="rBirth">&nbsp;</td>
+            <td><span class="title"> <%= t('forms.labels.region_of_birth')%> </span></td><td>:</td><td id="rBirth">&nbsp;</td>
           </tr>
           <tr>
-            <td><span class="title"> Province of Birth </span></td><td>:</td><td id="pBirth">&nbsp;</td>
+            <td><span class="title"> <%= t('forms.labels.province_of_birth')%> </span></td><td>:</td><td id="pBirth">&nbsp;</td>
           </tr>
           <tr>
-            <td> <span class="title"> Region of Residence </span></td><td>:</td><td id="rResidence">&nbsp;</td>
+            <td> <span class="title"> <%= t('forms.labels.region_of_residence')%> </span></td><td>:</td><td id="rResidence">&nbsp;</td>
           </tr>
           <tr>
-            <td><span class="title"> Province of Residence</span> </td><td>:</td><td id="pResidence">&nbsp;</td>
+            <td><span class="title"> <%= t('forms.labels.province_of_residence')%></span> </td><td>:</td><td id="pResidence">&nbsp;</td>
           </tr>
           <tr>
-            <td> <span class="title"> Barrios of Residence</span></td><td>:</td><td id="bResidence">&nbsp;</td>
+            <td> <span class="title"><%= t('forms.labels.barrio_of_residence')%></span></td><td>:</td><td id="bResidence">&nbsp;</td>
           </tr>
           <tr>
-            <td><span class="title"> Occupation</span>  </td><td>:</td><td id="occupation">&nbsp; </td>
+            <td><span class="title"><%= t('forms.labels.occupation') %></span>  </td><td>:</td><td id="occupation">&nbsp; </td>
           </tr>
         </table>
 
       </div>
     </div>
-    <button id="btnAction" class="green" style="position: absolute; right: 10px; bottom: 60px;" onclick="patientSelected()">Finish</button>
-    <button id="btnAction" class="blue" style="position: absolute; right: 140px; bottom: 60px;" onclick="window.location = '/search_by_name'">New Search</button>
-    <button id="btnAction" class="red" style="position: absolute; right: 520px; bottom: 60px;" onclick="window.location = '/'">Cancel</button>
+
+    <button id="btnAction" class="green" style="position: absolute; right: 10px; bottom: 60px;" onclick="patientSelected()"><%= t("forms.buttons.finish") %></button>
+    <button id="btnAction" class="blue" style="position: absolute; right: 160px; bottom: 60px;" onclick="window.location = '/search_by_name'"><%= t("forms.buttons.new_search") %></button>
+    <button id="btnAction" class="red" style="position: absolute; right: 500px; bottom: 60px;" onclick="window.location = '/'"><%= t("forms.buttons.cancel") %></button>
 <% end %>
 
 <script>

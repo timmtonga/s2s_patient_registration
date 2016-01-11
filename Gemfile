@@ -22,12 +22,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'mysql'
 gem 'kaminari'
 gem 'passenger', '4.0.41'
 gem 'rails-i18n', '~> 4.0.0' # for Rails 4
-
+gem "i18n-js"
+gem 'mysql2', '~> 0.3.18'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

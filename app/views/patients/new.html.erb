@@ -31,8 +31,8 @@
         <label for="gender">Gender</label><br>
         <select id="gender" name="patient[gender]" class="input_cell">
           <option></option>
-          <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> >Female</option>
-          <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> >Male</option>
+          <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> ><%= t('forms.options.female') %></option>
+          <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> ><%= t('forms.options.male') %></option>
         </select>
       </div>
 

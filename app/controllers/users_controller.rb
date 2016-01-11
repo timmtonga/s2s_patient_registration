@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @section = "User Registration"
     @targeturl = "/users"
     render :layout => "touch"
   end
@@ -54,8 +53,10 @@ class UsersController < ApplicationController
         user = User.find_by_username(params[:user]['username'])
         session[:user_id] = user.id
         User.current = user
+        flash[:message] = nil
         redirect_to "/"
       end
+      flash[:message] = t("messages.invalid_credentials")
     else
       session[:user_id] = nil
       User.current = nil

@@ -7,7 +7,7 @@
 
 <div id="home">
 
-  <input type="text" id="appname" value="<%= t('menu.patient_registration').split(' ').join("<br/>") %>" />
+  <input type="text" id="appname" value="<%= t('menu.terms.patient_registration').split(' ').join("<br/>") %>" />
 
   <div id="patient-card">
 
@@ -17,28 +17,26 @@
 
     <input type="text" id="Patient ID" value="<%= @patient.formatted_pnid %>" />
 
-    <input type="text" id="Age" value="<%= @patient.age %>" />
+    <input type="text" id="<%= t('menu.terms.age') %>" value="<%= @patient.age %>" />
 
-    <input type="text" id="National ID" value="<%= @patient.nat_id %>"  />
+    <input type="text" id="<%= t('menu.terms.national_id') %>" value="<%= @patient.nat_id %>"  />
 
-    <input type="text" id="Marital Status" value="<%= @patient.marital_status.titleize %>" />
+    <input type="text" id="<%= t('menu.terms.maritals_status') %>" value="<%= t('forms.options.' +@patient.marital_status.downcase).titleize %>" />
 
   </div>
 
   <div id="buttons">
-
     <button onmousedown="window.location = '/'">Finish</button>
-
+    <button onmousedown="window.location = '/print_barcode?patient_id=<%=@patient.id%>'">print_barcode</button>
+    <button onmousedown="window.location = '/demographics/<%=@patient.id%>'">edit_demographics</button>
   </div>
 
   <select id="tabs">
-    <option value=""><%=  t('menu.current_visit') %></option>
-    <option value="/demographics/<%=@patient.id%>"><%=  t('menu.edit_demographics') %></option>
-    <option value="/print_barcode?patient_id=<%=@patient.id%>"><%=  t('menu.print_barcode') %></option>
+    <option value="/visit_summary/<%=@patient.id%>">summary</option>
   </select>
-
 </div>
 
     <%= javascript_include_tag 'dashboard' %>
+
 </body>
 </html>

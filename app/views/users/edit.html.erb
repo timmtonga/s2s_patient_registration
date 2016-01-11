@@ -2,7 +2,7 @@
 
     <% if params[:section].blank? %>
         <fieldset>
-          <legend>User Details Edit</legend>
+          <legend><%= t('forms.legends.update_user') %></legend>
           <div class="field">
             <%= f.label :first_name %>
             <br>
@@ -27,7 +27,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>User Details Edit</legend>
+          <legend><%= t('forms.legends.update_user') %></legend>
           <div class="field">
             <%= f.label :user_role %>
             <br>
@@ -37,7 +37,7 @@
         </fieldset>
     <% else %>
         <fieldset>
-          <legend>Update Password</legend>
+          <legend><%= t('forms.legends.update_password') %></legend>
           <div class="field">
             <%= f.label :password %>
             <br>

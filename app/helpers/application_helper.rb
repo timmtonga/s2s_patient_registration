@@ -23,11 +23,6 @@ module ApplicationHelper
   end
 
   def roles
-    options = [['',''], ['Clerk','clerk'],['Administrator','administrator']]
+    options = [['',''], [t('forms.options.clerk'),'clerk'],[t('forms.options.administrator'),'administrator']]
   end
-
-  def provices
-
-  end
-
 end

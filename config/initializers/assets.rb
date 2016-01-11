@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( dashboard.js )
 Rails.application.config.assets.precompile += %w( ts.js )
 Rails.application.config.assets.precompile += %w( tsV2.1.js )
+Rails.application.config.assets.precompile += %w( i18n.js )

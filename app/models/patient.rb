@@ -1,3 +1,5 @@
+require 'rails-i18n'
+
 class Patient < ActiveRecord::Base
 
 
@@ -27,7 +29,7 @@ class Patient < ActiveRecord::Base
   end
 
   def age
-    return (Date.today.year - self.birthdate.year).to_i rescue "Unknown"
+    return ((Date.today - self.birthdate).to_i / 365) rescue "Unknown"
   end
 
   def formatted_pnid

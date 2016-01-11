@@ -1408,7 +1408,7 @@ function addDate(parent, target, date) {
                     "type": "button",
                     "id": "btnToday" + target.id,
                     "target": target.id,
-                    "value": "Today",
+                    "value": I18n.t("forms.buttons.today"),
                     "onmousedown": "getCurrentDate(this.getAttribute('target'))",
                     "class": "button green",
                     "style": "height: 58px; margin: auto; width: 100%;"
@@ -2449,7 +2449,7 @@ function addLabel(parent, text, size, color) {
     var lbl = document.createElement("label");
     lbl.style.color = color;
     lbl.style.fontSize = size;
-    lbl.innerHTML = text;
+    lbl.innerHTML = text
 
     parent.appendChild(lbl);
 
@@ -2720,7 +2720,7 @@ function loadPage(section, back) {
 
         __$("legend").innerHTML = (fieldsets[section].getElementsByTagName("legend")[0].innerHTML.trim().length > 50 ?
             fieldsets[section].getElementsByTagName("legend")[0].innerHTML.substr(0, 50) + "..." : fieldsets[section].getElementsByTagName("legend")[0].innerHTML) +
-            "<p style='color: red; font-style: italic; font-size: 12px;'>* Required fields.</p>";
+            "<p style='color: red; font-style: italic; font-size: 12px;'>* " + I18n.t("forms.legends.required_fields") +".</p>";
 
         // fieldsets[section].getElementsByTagName("legend")[0].innerHTML;
 
@@ -2867,22 +2867,22 @@ function loadPage(section, back) {
 
     brow3.appendChild(bcell3);
 
-    btnCancel = addButton(__$("btn0"), "Cancel", "red");
+    btnCancel = addButton(__$("btn0"), I18n.t("forms.buttons.cancel"), "red");
 
-    btnClear = addButton(__$("btn1"), "Clear", "blue");
+    btnClear = addButton(__$("btn1"), I18n.t("forms.buttons.clear"), "blue");
 
-    btnBack = addButton(__$("btn2"), "Back", "gray");
+    btnBack = addButton(__$("btn2"), I18n.t("forms.buttons.back"), "gray");
 
-    btnNext = addButton(__$("btn3"), "Next", "green");
+    btnNext = addButton(__$("btn3"), I18n.t("forms.buttons.next"), "green");
 
     if (btnCancel) {
         btnCancel.style.width = "98%";
 
-        btnCancel.style.fontSize = "24px";
+        btnCancel.style.fontSize = "22px";
 
         btnCancel.onmousedown = function () {
 
-            var msg = "Are you sure you want to cancel the data entry process?";
+            var msg = I18n.t("messages.cancel");
 
             var action = "if (typeof(cancelDestination) != 'undefined') { window.location = cancelDestination; }";
 
@@ -2894,19 +2894,19 @@ function loadPage(section, back) {
     if (btnClear) {
         btnClear.style.width = "98%";
 
-        btnClear.style.fontSize = "24px";
+        btnClear.style.fontSize = "22px";
     }
 
     if (btnBack) {
         btnBack.style.width = "98%";
 
-        btnBack.style.fontSize = "24px";
+        btnBack.style.fontSize = "22px";
     }
 
     if (btnNext) {
         btnNext.style.width = "98%";
 
-        btnNext.style.fontSize = "24px";
+        btnNext.style.fontSize = "22px";
     }
 
     var fields = navigablefieldsets[section];	// fieldsets[section].elements;
@@ -2966,7 +2966,7 @@ function loadPage(section, back) {
                         cell.style.padding = "20px";
                         cell.id = "cell" + i + "." + j;
 
-                        var label = addLabel(cell, (fields[i].label != undefined ? fields[i].label.innerHTML +
+                        var label = addLabel(cell, (fields[i].label != undefined ? processLabelText(fields[i].label.innerHTML) +
                             (fields[i].getAttribute("optional") == null ? "<span style='color: red;'> *</span>" : "") : "Undefined"), textSize, "#333");
 
                         break;
@@ -3090,7 +3090,7 @@ function loadPage(section, back) {
 
                             if (fields[i].getAttribute("placeholder") != null) {
 
-                                txt.setAttribute("placeholder", fields[i].getAttribute("placeholder"));
+                                txt.setAttribute("placeholder", I18n.t("forms.place_holders." +fields[i].getAttribute("placeholder").toLowerCase().split(" ").join("_")));
 
                             }
 
@@ -3522,15 +3522,15 @@ function navigateTo(pos, section, back) {
 
             if (section < fieldsets.length && pos < fields.length - 1) {
 
-                btnNext.innerHTML = "Next";
+                btnNext.innerHTML = I18n.t("forms.buttons.next");
 
             } else if ((section < fieldsets.length - 1 && pos == fields.length - 1) || (section == fieldsets.length - 1 && pos < fields.length - 1)) {
 
-                btnNext.innerHTML = "Next";
+                btnNext.innerHTML = I18n.t("forms.buttons.next");
 
             } else {
 
-                btnNext.innerHTML = "Finish";
+                btnNext.innerHTML = I18n.t("forms.buttons.finish");
 
             }
 
@@ -4572,7 +4572,7 @@ function clickCanGo() {
 
                 if (__$("textFor" + parent.id).value.trim().length == 0) {
 
-                    showMsg("Please enter a valid value in the empty field.");
+                    showMsg(I18n.t("messages.empty_field"));
 
                     if (__$("cell" + i + ".3")) {
 
@@ -4607,7 +4607,7 @@ function clickCanGo() {
 
                         if (date > absolute_date) {
 
-                            showMsg("The date that you have entered is greater than the expected date.\nPlease enter a valid date.");
+                            showMsg(I18n.t("messages.date_invalid"));
 
                             if (__$("cell" + i + ".3")) {
 
@@ -5043,7 +5043,7 @@ function showMsgForAction(msg, action, width, title, noAction) {
 
     var btnNo = document.createElement("button");
     btnNo.className = "blue";
-    btnNo.innerHTML = "No";
+    btnNo.innerHTML = I18n.t("forms.buttons.no_button");
     btnNo.style.width = "120px";
     btnNo.style.cursor = "pointer";
     btnNo.style.fontSize = "24px";
@@ -5053,7 +5053,7 @@ function showMsgForAction(msg, action, width, title, noAction) {
 
     var btnYes = document.createElement("button");
     btnYes.className = "blue";
-    btnYes.innerHTML = "Yes";
+    btnYes.innerHTML = I18n.t("forms.buttons.yes_button");
     btnYes.style.width = "120px";
     btnYes.style.cursor = "pointer";
     btnYes.style.fontSize = "24px";
@@ -5353,6 +5353,11 @@ function dontGo() {
 
 }
 
+function processLabelText(text){
+
+    return I18n.t('forms.labels.' + text.toLowerCase().trim().split(' ').join('_'));
+
+}
 setTimeout("checkScrolls()", 500);
 
 // init();

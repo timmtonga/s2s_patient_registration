@@ -1,6 +1,6 @@
 <%= form_for :patient, url: {action: "update_patient", params: {id: @patient.id, section: params[:section]}} do |f| %>
     <fieldset>
-      <legend>Patient Details</legend>
+      <legend><%= t('forms.legends.patient_details') %></legend>
         <% if params[:section] == "name" %>
           <div class="field">
             <%= f.label :first_name %>
@@ -28,8 +28,8 @@
             <label for="gender">Gender</label><br>
             <select id="gender" name="patient[gender]" class="input_cell">
               <option></option>
-              <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> >Female</option>
-              <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> >Male</option>
+              <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> ><%= t('forms.options.female') %></option>
+              <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> ><%= t('forms.options.male') %></option>
             </select>
           </div>
       <% elsif params[:section] == "national_id" %>

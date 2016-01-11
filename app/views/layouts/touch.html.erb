@@ -4,6 +4,12 @@
   <title>Patient Registration</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "i18n" %>
+  <%= javascript_include_tag "translations" %>
+  <%= javascript_tag do %>
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+  <% end %>
   <%= javascript_include_tag 'ts', 'data-turbolinks-track' => true %>
   <style>
 
@@ -35,11 +41,11 @@
               <td style="vertical-align: middle;">
                 <div style="border: 1px solid #ccc; color: #ccc; border-radius: 20px; padding: 2px; font-size: 0.4em;
                         height: 20px; padding-left: 20px; padding-right: 20px;">
-                  <%= t('menu.logged_in_as') %> : <%= User.current.username rescue nil %>
+                  <%= t('menu.terms.logged_in_as') %> : <%= User.current.username rescue nil %>
                 </div>
               </td>
               <td>
-                <%= t('menu.patient_registration') %> <sub style="font-size: 11px;"><%#= app_version %></sub>
+                <%= t('menu.terms.patient_registration') %> <sub style="font-size: 11px;"><%#= app_version %></sub>
               </td>
              <!--
               <td>

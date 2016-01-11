@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get "/demographics/:id" => "patients#demographics"
   post "/search_results" => "patients#search_results"
   post "/update_patient" => "patients#update_patient"
+  get "/visit_summary/:id" => "patients#visit_summary"
 
   resources :patients
   resources :users

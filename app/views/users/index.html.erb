@@ -6,26 +6,33 @@
       #
     </div>
     <div class="cell" style="border-bottom: 1px solid #3465a4; border-right: 1px dotted #3465a4; padding: 5px;">
-      Username
+      <%= t('menu.terms.username') %>
     </div>
     <div class="cell"
          style="border-bottom: 1px solid #3465a4; border-right: 1px dotted #3465a4; padding: 5px; text-align: center;">
-      User's Name
+      <%= t('menu.terms.users_name') %>
     </div>
     <div class="cell"
          style="border-bottom: 1px solid #3465a4; border-right: 1px dotted #3465a4; padding: 5px; text-align: center;">
-      Role(s)
+      <%= t('menu.terms.role') %>
     </div>
     <div class="cell" style="border-bottom: 1px solid #3465a4; border-right: 1px dotted #3465a4; padding: 5px; text-align: center;">
       Status
     </div>
     <div class="cell" style="border-bottom: 1px solid #3465a4; padding: 5px; text-align: center;">
-      Operations
+      <%= t('menu.terms.operations') %>
     </div>
   </div>
 </div>
 
-<button id="btnAction" class="blue" style="position: absolute; right: 160px; bottom: 20px;" onclick="window.location = '<%= new_user_path %>'">Add User</button>
+<button id="btnAction" class="blue" style="position: absolute; right: 160px; bottom: 20px;" onclick="window.location = '<%= new_user_path %>'"><%= t('forms.buttons.add_user') %></button>
+
+<%= javascript_include_tag "i18n" %>
+<%= javascript_include_tag "translations" %>
+<%= javascript_tag do %>
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+<% end %>
 
 <script>
 
@@ -93,10 +100,10 @@
 
         var header_text = [
             "#",
-            "Username",
-            "User's Name",
-            "Role",
-            "Operations",
+            '<%= t('menu.terms.username') %>',
+            '<%= t('menu.terms.users_name') %>',
+            '<%= t('menu.terms.role') %>',
+            '<%= t('menu.terms.operations') %>',
             "&nbsp;"
         ];
 
@@ -234,7 +241,7 @@
 
                         if(r < users.length){
 
-                            cell.innerHTML = users[r]["roles"];
+                            cell.innerHTML = I18n.t('forms.options.' + users[r]["roles"].toLowerCase());
 
                         } else {
 

@@ -351,7 +351,7 @@
         </tr>
         <tr>
           <td colspan="5" align="center" style="font-size: 36px; color: #3465a4;;">
-            Patient Registration
+            <%= t("app.app_name") %>
           </td>
         </tr>
         <!--tr style="cursor: pointer;" onclick="switchContext()">
@@ -367,7 +367,7 @@
         </tr-->
         <tr>
           <td align="right">
-            Username
+            <%= t("forms.labels.username")%>
           </td>
           <td>
             :
@@ -375,15 +375,15 @@
           <td id="cursor_for_user_username" style="font-weight: bold; font-size: 28px;">
           </td>
           <td>
-            <%= text_field(:user, :username, :textCase => "lower", :placeholder => "username", :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 1) %>
+            <%= text_field(:user, :username, :textCase => "lower", :placeholder => t("forms.place_holders.username"), :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 1) %>
           </td>
           <td rowspan="2" align="center" style="vertical-align: middle;">
-            <button class="blue" style="width: 150px; height: 122px;" tabindex=3 >Login</button>
+            <button class="blue" style="width: 150px; height: 122px;" tabindex=3 ><%= t("forms.buttons.login") %></button>
           </td>
         </tr>
         <tr>
           <td align="right">
-            Password
+            <%= t("forms.labels.password") %>
           </td>
           <td>
             :
@@ -391,7 +391,7 @@
           <td id="cursor_for_user_password" style="font-weight: bold; font-size: 28px;">
           </td>
           <td>
-            <%= password_field(:user, :password, :textCase => "lower", :placeholder => "password", :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 2) %>
+            <%= password_field(:user, :password, :textCase => "lower", :placeholder => t("forms.place_holders.password"), :class => 'input_cell', :style => "width: 250px;", :onclick => "changeFocusToMe(this)", :tabindex => 2) %>
           </td>
         </tr>
         <tr>
@@ -602,6 +602,10 @@
     changeFocusToMe(__$("user_username"));
 
 </script>
-
+<% if flash[:message] %>
+    <script>
+        showMsg('<%= flash[:message] %>')
+    </script>
+<% end %>
 </body>
 </html>

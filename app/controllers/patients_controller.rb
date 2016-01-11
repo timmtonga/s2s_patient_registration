@@ -30,7 +30,7 @@ class PatientsController < ApplicationController
   def show
     @patient = Patient.find(params[:id])
     if @patient.blank?
-      flash[:message] = "Patient Not Found"
+      flash[:message] = t('messages.no_match_found')
       redirect_to root_path
     end
   end
@@ -153,6 +153,8 @@ class PatientsController < ApplicationController
 
   def demographics
     @patient = Patient.find(params[:id])
+    @targeturl = "/patients/#{@patient.id}"
+    render :layout => "menu"
   end
 
   def search_results
@@ -161,6 +163,10 @@ class PatientsController < ApplicationController
                               params[:patient][:fathers_name].soundex, params[:patient][:mothers_name].soundex)
 
     render :layout => "touch"
+  end
+
+  def visit_summary
+
   end
 
   private

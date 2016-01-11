@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :check_logged_in, :except => ['login','logout']
 
-  def print_and_redirect(print_url, redirect_url, message = "Printing, please wait...", show_next_button = false, patient_id = nil)
+  def print_and_redirect(print_url, redirect_url, message = t("messages.printing_wait"), show_next_button = false, patient_id = nil)
     @print_url = print_url
     @redirect_url = redirect_url
     @message = message
@@ -14,9 +14,8 @@ class ApplicationController < ActionController::Base
     render :layout => nil
   end
 
-  def translate
-    text = params[:text].downcase.split(" ").join("_")
-    render :text => t("menu.#{text}")
+  def export_i18n_messages
+    SimplesIdeias::I18n.export! if Rails.env.development?
   end
 
   protected
