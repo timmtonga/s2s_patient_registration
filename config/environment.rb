@@ -8,3 +8,4 @@ Rails.application.initialize!
 require "bantu_soundex"
 require "zebra_printer"
 require "csv"
+require 'misc'

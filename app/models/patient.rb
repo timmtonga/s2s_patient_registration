@@ -1,7 +1,7 @@
 require 'rails-i18n'
+require 'misc'
 
 class Patient < ActiveRecord::Base
-
 
   validates :first_name, presence: true
   validates :fathers_name, presence: true
@@ -11,6 +11,8 @@ class Patient < ActiveRecord::Base
 
   belongs_to :user, :foreign_key => :creator
   before_save :complete_record
+
+  include Misc
 
   def fullname
     self.first_name + " " +self.middle_name + " " + self.fathers_name + " " +self.mothers_name
@@ -54,8 +56,8 @@ class Patient < ActiveRecord::Base
 
     # Handle months by name or number (split this out to a date method)
     month_i = (month || 0).to_i
-    month_i = Date::MONTHNAMES.index(month) if month_i == 0 || month_i.blank?
-    month_i = Date::ABBR_MONTHNAMES.index(month) if month_i == 0 || month_i.blank?
+    month_i = getLocalizedMonth(month) if month_i == 0 || month_i.blank?
+    month_i = getLocalizedAbbvMonth(month) if month_i == 0 || month_i.blank?
 
     if month_i == 0 || month == "?"
       birthdate = Date.new(year.to_i,1,1)
@@ -74,14 +76,14 @@ class Patient < ActiveRecord::Base
       if self.birthdate.blank?
         "??/??/??"
       elsif self.birthdate.day == 15
-        self.birthdate.strftime("??/%b/%Y")
+        I18n.l(self.birthdate, format:"??/%b/%Y")
       elsif self.birthdate.day == 1
-        self.birthdate.strftime("??/???/%Y")
+        I18n.l(self.birthdate, format:"??/???/%Y")
       else
-        self.birthdate.strftime("%d/%b/%Y")
+        I18n.l(self.birthdate, format:"%d/%b/%Y")
       end
     else
-      self.birthdate.strftime("%d/%b/%Y")
+      I18n.l(self.birthdate, format: "%d/%b/%Y")
     end
   end
 
@@ -115,12 +117,12 @@ class Patient < ActiveRecord::Base
   def birthdate_printable
     if self.birthdate_estimated
       if self.birthdate.day == 15
-        self.birthdate.strftime("??/%b/%Y")
+        I18n.l(self.birthdate, format: "??/%b/%Y")
       else
-        self.birthdate.strftime("??/???/%Y")
+        I18n.l(self.birthdate, format: "??/???/%Y")
       end
     else
-      self.birthdate.strftime("%d/%b/%Y")
+      I18n.l(self.birthdate, format: "%d/%b/%Y")
     end
   end
 

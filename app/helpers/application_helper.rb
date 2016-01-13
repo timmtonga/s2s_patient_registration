@@ -1,8 +1,9 @@
 module ApplicationHelper
 
   def marital_status_options
-    options = [['', ''], ['Single', 'single'],['Cohabiting','cohabiting'],['Married', 'married'],["Windowed", "widowed"],
-               ['Seperated', 'seperated'],["Divorced", "divorced"] ]
+    options = [['', ''], [t('forms.options.single'), 'single'],[t('forms.options.cohabiting'),'cohabiting'],
+               [t('forms.options.married'), 'married'],[t('forms.options.widowed'), "widowed"],
+               [t('forms.options.separated'), 'seperated'],[t('forms.options.divorced'), "divorced"] ]
 
     return options
   end

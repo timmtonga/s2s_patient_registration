@@ -241,7 +241,8 @@ function createPage(fieldset){
 			},
 			{
 				"control":"div",
-				"class":"layer1",
+				"class":"layer1" +
+                "",
 				"content":"&nbsp;"
 			},
 			{

@@ -88,7 +88,7 @@
 
         <tr>
           <th><%= t('menu.terms.maritals_status') %></th>
-          <td><%=@patient.marital_status%></td>
+          <td><%=@patient.marital_status %></td>
           <td class="data"><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=marital_status", target: "_parent",
                                        :class => "anchor_class" %>
           </td>
@@ -96,7 +96,7 @@
 
         <tr>
           <th><%= t('menu.terms.date_of_birth') %></th>
-          <td class="data"><%=@patient.birthdate_formatted%></td>
+          <td class="data"><%= @patient.birthdate_formatted %></td>
           <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=birthdate", target: "_parent",
                           :class => "anchor_class" %>
           </td>
@@ -128,7 +128,7 @@
 
         <tr>
           <th><%= t('menu.terms.occupation') %></th>
-          <td class="data"><%=@patient.occupation%></td>
+          <td class="data"><%=@patient.occupation.titleize %></td>
           <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=occupation", target: "_parent",
                           :class => "anchor_class" %>
           </td>

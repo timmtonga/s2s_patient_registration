@@ -96,12 +96,25 @@ es:
       october: "Octubre"
       november: "Noviembre"
       december: "Diciembre"
+      january_short: "Jan"
+      february_short: "Feb"
+      march_short: "Mar"
+      april_short: "Abr"
+      may_short: "May"
+      june_short: "Jun"
+      july_short: "Jul"
+      august_short: "Ago"
+      september_short: "Sep"
+      october_short: "Oct"
+      november_short: "Nov"
+      december_short: "Dic"
       unknown: "Desconocido"
       divorced: "Divorciado"
       married: "Casado"
       separated: "Separado"
       single: "Soltero"
       widowed: "Viudo"
+      cohabiting: "Union Libre"
       clerk: "Empleado"
       administrator: "Administrador"
   menu:
@@ -161,3 +174,7 @@ es:
        empty_field: "Favor ingresar un valor en el espacio en blanco."
   app:
       app_name: "Registro del paciente"
+  date:
+      formats:
+        default: "%d/%b/%Y"
+        long: "%d %B %Y"

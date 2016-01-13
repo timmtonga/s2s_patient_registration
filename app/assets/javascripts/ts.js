@@ -28,14 +28,17 @@ var monthNames = {
     "Feb": 1,
     "Mar": 2,
     "Apr": 3,
+    "Abr": 3,
     "May": 4,
     "Jun": 5,
     "Jul": 6,
     "Aug": 7,
+    "Ago": 7,
     "Sep": 8,
     "Oct": 9,
     "Nov": 10,
-    "Dec": 11
+    "Dec": 11,
+    "Dic": 11
 };
 
 var timers = {};
@@ -1390,7 +1393,14 @@ function addDate(parent, target, date) {
                     "id": "txtMonthFor" + target.id,
                     "target": target.id,
                     "value": (typeof(months[date.getMonth()]) != "undefined" ? months[date.getMonth()] : (currentdate.length == 3 ? currentdate[1] : "?")),
-                    "onmousedown": "showShield(); addList(__$('txtMonthFor' + this.getAttribute('target')),{'Jan':'January','Feb':'February','Mar':'March','Apr':'April','May':'May','Jun':'June','Jul':'July','Aug':'August','Sep':'September','Oct':'October','Nov':'November','Dec':'December','?':'Unknown'},'single',__$('txtMonthFor' + this.getAttribute('target')),__$('txtMonthFor' + this.getAttribute('target')), 'checkDate(\"' + this.getAttribute('target') + '\")'); checkDate(this.getAttribute('target'));",
+                    "onmousedown": "showShield(); addList(__$('txtMonthFor' + this.getAttribute('target')),{"+ I18n.t("forms.options.january_short") +":"+ 'I18n.t("forms.options.january")' +
+                    ","+ I18n.t("forms.options.february_short") +":"+ 'I18n.t("forms.options.february")' +","+ I18n.t("forms.options.march_short") +":"+ 'I18n.t("forms.options.march")' +
+                    ","+ I18n.t("forms.options.april_short") +":"+ 'I18n.t("forms.options.april")' + ","+ I18n.t("forms.options.may_short") +":"+ 'I18n.t("forms.options.may")' +
+                    ","+ I18n.t("forms.options.june_short") +":"+ 'I18n.t("forms.options.june")' +","+ I18n.t("forms.options.july_short") +":"+ 'I18n.t("forms.options.july")' +
+                    ","+ I18n.t("forms.options.august_short") +":"+ 'I18n.t("forms.options.august")' +","+ I18n.t("forms.options.september_short")
+                    +":"+ 'I18n.t("forms.options.september")' +","+ I18n.t("forms.options.october_short") +":"+ 'I18n.t("forms.options.october")' +
+                    ","+ I18n.t("forms.options.november_short") +":"+ 'I18n.t("forms.options.november")' +","+ I18n.t("forms.options.december_short") +":"+
+                    'I18n.t("forms.options.december")' +",'?':"+ 'I18n.t("forms.options.unknown")' +"},'single',__$('txtMonthFor' + this.getAttribute('target')),__$('txtMonthFor' + this.getAttribute('target')), 'checkDate(\"' + this.getAttribute('target') + '\")'); checkDate(this.getAttribute('target'));",
                     "class": "input_cell",
                     "style": "font-size: 24px; text-align: center; width: 80%;"
                 },
@@ -1501,7 +1511,14 @@ function addDate(parent, target, date) {
                     "id": "txtMonthFor" + target.id,
                     "target": target.id,
                     "value": (typeof(months[date.getMonth()]) != "undefined" ? months[date.getMonth()] : (currentdate.length == 3 ? currentdate[1] : "?")),
-                    "onmousedown": "showShield(); addList(__$('txtMonthFor' + this.getAttribute('target')),{'Jan':'January','Feb':'February','Mar':'March','Apr':'April','May':'May','Jun':'June','Jul':'July','Aug':'August','Sep':'September','Oct':'October','Nov':'November','Dec':'December','?':'Unknown'},'single',__$('txtMonthFor' + this.getAttribute('target')),__$('txtMonthFor' + this.getAttribute('target')), 'checkDate(\"' + this.getAttribute('target') + '\")'); checkDate(this.getAttribute('target'));",
+                    "onmousedown": "showShield(); addList(__$('txtMonthFor' + this.getAttribute('target')),{"+ I18n.t("forms.options.january_short") +":"+ 'I18n.t("forms.options.january")' +
+                    ","+ I18n.t("forms.options.february_short") +":"+ 'I18n.t("forms.options.february")' +","+ I18n.t("forms.options.march_short") +":"+ 'I18n.t("forms.options.march")' +
+                    ","+ I18n.t("forms.options.april_short") +":"+ 'I18n.t("forms.options.april")' + ","+ I18n.t("forms.options.may_short") +":"+ 'I18n.t("forms.options.may")' +
+                    ","+ I18n.t("forms.options.june_short") +":"+ 'I18n.t("forms.options.june")' +","+ I18n.t("forms.options.july_short") +":"+ 'I18n.t("forms.options.july")' +
+                    ","+ I18n.t("forms.options.august_short") +":"+ 'I18n.t("forms.options.august")' +","+ I18n.t("forms.options.september_short")
+                    +":"+ 'I18n.t("forms.options.september")' +","+ I18n.t("forms.options.october_short") +":"+ 'I18n.t("forms.options.october")' +
+                    ","+ I18n.t("forms.options.november_short") +":"+ 'I18n.t("forms.options.november")' +","+ I18n.t("forms.options.december_short") +":"+
+                    'I18n.t("forms.options.december")' +",'?':"+ 'I18n.t("forms.options.unknown")' +"},'single',__$('txtMonthFor' + this.getAttribute('target')),__$('txtMonthFor' + this.getAttribute('target')), 'checkDate(\"' + this.getAttribute('target') + '\")'); checkDate(this.getAttribute('target'));",
                     "class": "input_cell",
                     "style": "font-size: 24px; text-align: center; width: 80%;"
                 },
