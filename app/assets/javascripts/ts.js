@@ -19,12 +19,13 @@ var styles = "body {-moz-user-select: none; overflow: hidden; font-family: 'Nimb
 
 var currentCaseUpper = true;
 var currentKeysNumeric = false;
-var currentKeysQWERTY = false;
+var currentKeysQWERTY = true;
 
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 var monthNames = {
     "Jan": 0,
+    "Ene": 0,
     "Feb": 1,
     "Mar": 2,
     "Apr": 3,
@@ -226,18 +227,18 @@ function showFixedKeyboard(ctrl, container, disabled, numbers, caps) {
 
             keys = [
                 ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-                ["A", "S", "D", "F", "G", "H", "J", "K", "L", 'del'],
-                ['', "Z", "X", "C", "V", "B", "N", "M", 'N/A', "CAP"],
-                ['@', 'space', ":", ".", "/", "123", "abc"]
+                ["A", "S", "D", "F", "G", "H", "J", "K", "L","Ñ"],
+                ["CAP", "Z", "X", "C", "V", "B", "N", "M", ":",'del' ],
+                ['@', 'space', ".", "/", "123", "abc"]
             ];
 
         } else {
 
             keys = [
-                ["A", "B", "C", "D", "E", "F", "G", "H", "I"],
-                ["J", "K", "L", "M", "N", "O", "P", "Q", "R"],
-                ["S", "T", "U", "V", "W", "X", "Y", "Z", "CAP"],
-                ['@', 'space', ":", ".", "/", "123", "qwe", 'del', "N/A"]
+                ["A", "B", "C", "D", "E", "F", "G", "H", "I","J"],
+                ["K", "L", "M", "N","Ñ" ,"O", "P", "Q", "R", ":"],
+                ["CAP","S", "T", "U", "V", "W", "X", "Y", "Z", 'del' ],
+                ['@', 'space', ".", "/", "123", "qwe"]
             ];
 
         }
@@ -245,7 +246,7 @@ function showFixedKeyboard(ctrl, container, disabled, numbers, caps) {
     }
 
     var letters = {"A": true, "B": true, "C": true, "D": true, "E": true, "F": true, "G": true, "H": true,
-        "I": true, "J": true, "K": true, "L": true, "M": true, "N": true, "O": true, "P": true, "Q": true,
+        "I": true, "J": true, "K": true, "L": true, "M": true, "N": true,"Ñ": true, "O": true, "P": true, "Q": true,
         "R": true, "S": true, "T": true, "U": true, "V": true, "W": true, "X": true, "Y": true, "Z": true, "CAP": true};
 
     var table = document.createElement('div');

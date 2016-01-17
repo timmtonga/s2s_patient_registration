@@ -27,11 +27,21 @@ class Patient < ActiveRecord::Base
   end
 
   def search_result_format
-      return fullname + " ( #{self.patient_identifier} - #{self.gender.titleize} - Age: #{self.age})"
+      return fullname + " ( #{self.patient_identifier} - #{I18n.t('forms.options.'+self.gender.downcase).titleize} - #{I18n.t('menu.terms.age').titleize}: #{self.age})"
   end
 
   def age
-    return ((Date.today - self.birthdate).to_i / 365) rescue "Unknown"
+    age_in_days = (Date.today - self.birthdate).to_i
+
+    if age_in_days < 31
+      return age_in_days.to_s + " days"
+    elsif age_in_days < 365
+      years = (Date.today.year - self.birthdate.year)
+      months = (Date.today.month - self.birthdate.month)
+      return ((years * 12) + months).to_s + " months"
+    else
+      return (age_in_days / 365)
+    end
   end
 
   def formatted_pnid
@@ -87,6 +97,10 @@ class Patient < ActiveRecord::Base
     end
   end
 
+  def date_registered
+    I18n.l(self.created_at, format: "%d - %b - %Y")
+  end
+
   def self.get_similar_first_names(search_term)
     Patient.where("fname_namecode like ?", "#{search_term.soundex}%")
   end
@@ -135,7 +149,7 @@ class Patient < ActiveRecord::Base
     label.font_horizontal_multiplier = 2
     label.font_vertical_multiplier = 2
     label.left_margin = 50
-    label.draw_barcode(30,260,0,1,5,15,80,false,"#{self.patient_identifier}")
+    label.draw_barcode(30,306,0,1,5,15,80,false,"#{self.patient_identifier}")
     label.draw_multi_text("#{self.first_names.titleize}", {})
     label.draw_multi_text("#{self.last_names.titleize}", {})
     label.draw_multi_text("#{self.formatted_pnid} #{self.birthdate_printable}#{sex}")

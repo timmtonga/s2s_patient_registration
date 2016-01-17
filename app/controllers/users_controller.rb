@@ -55,8 +55,10 @@ class UsersController < ApplicationController
         User.current = user
         flash[:message] = nil
         redirect_to "/"
+      else
+        flash[:message] = t("messages.invalid_credentials")
       end
-      flash[:message] = t("messages.invalid_credentials")
+
     else
       session[:user_id] = nil
       User.current = nil

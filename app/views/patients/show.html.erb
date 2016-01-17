@@ -13,7 +13,7 @@
 
     <input type="text" id="gender" value="<%= @patient.gender[0].upcase %>" />
 
-    <input type="text" id="name" value="<%= @patient.fullname %>" />
+    <input type="text" id="name" value="<%= @patient.fullname.titleize %>" />
 
     <input type="text" id="Patient ID" value="<%= @patient.formatted_pnid %>" />
 
@@ -21,7 +21,7 @@
 
     <input type="text" id="<%= t('menu.terms.national_id') %>" value="<%= @patient.nat_id %>"  />
 
-    <input type="text" id="<%= t('menu.terms.maritals_status') %>" value="<%= t('forms.options.' +@patient.marital_status.downcase).titleize %>" />
+    <input type="text" id="<%= t('menu.terms.marital_status') %>" value="<%= t('forms.options.' +@patient.marital_status.downcase).titleize %>" />
 
   </div>
 
@@ -32,7 +32,7 @@
   </div>
 
   <select id="tabs">
-    <option value="/visit_summary/<%=@patient.id%>">summary</option>
+    <option value="/patient_tab/<%=@patient.id%>">summary</option>
   </select>
 </div>
 

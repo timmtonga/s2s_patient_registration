@@ -3,6 +3,7 @@ module Misc
   def getLocalizedAbbvMonth(month)
     monthNames = {
         "Jan"=> 1,
+        "Ene"=> 1,
         "Feb"=> 2,
         "Mar"=> 3,
         "Apr"=> 4,

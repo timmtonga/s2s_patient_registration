@@ -72,6 +72,10 @@ class PatientsController < ApplicationController
 
   end
 
+  def patient_tab
+    @patient = Patient.find(params[:id])
+  end
+
   def first_names
 
     data = Patient.get_similar_first_names(params["search"])
