@@ -1,0 +1,83 @@
+<!DOCTYPE=html>
+<html>
+<head>
+
+</head>
+<body style="margin: 10px; overflow: auto; font-family: Helvetica;">
+<div style="display: table; width: 100%; border: 1px solid #eee; height: 99%;">
+  <div style="display: table-row;">
+
+    <div style="display: table-cell; vertical-align: middle;">
+
+      <div style="display: table; margin: auto;">
+        <div style="display: table-row;">
+          <div style="display: table-cell;">
+            <br/><br/>
+
+            <div style="display: table; border: 1px solid #5679c1; font-size: 18px; width: 600px;">
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('menu.terms.date_of_birth') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px; width: 50%;">
+                  <%= @patient.birthdate_formatted %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('forms.labels.occupation') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%= @patient.occupation.titleize %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('menu.terms.place_of_birth') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%=@patient.place_of_birth %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('forms.labels.region_of_residence') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%= @patient.region_of_residence %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('forms.labels.province_of_residence') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%= @patient.province_of_residence %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('forms.labels.barrio_of_residence') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%= @patient.barrio_of_residence %>
+                </div>
+              </div>
+              <div style="display: table-row;">
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; font-weight: bold; padding: 5px; border-right: 1px solid #5679c1;">
+                  <%= t('menu.terms.date_registered') %>
+                </div>
+                <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
+                  <%= @patient.date_registered %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

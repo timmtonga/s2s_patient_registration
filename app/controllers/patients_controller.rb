@@ -100,19 +100,19 @@ class PatientsController < ApplicationController
 
   def region
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read).keys.sort rescue []
-    data << ["Unknown"]
+    data << [I18n.t("forms.options.unknown")]
     render :text => data.join("\n")
   end
 
   def province
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read)[params[:region].strip].keys.sort rescue []
-    data << ["Unknown"]
+    data << [I18n.t("forms.options.unknown")]
     render :text => data.join("\n")
   end
 
   def barrios
     data = JSON.parse(File.open("#{Rails.root}/app/assets/data/locations.json").read)[params[:region].strip][params[:province].strip].sort rescue []
-    data << ["Unknown"]
+    data << [I18n.t("forms.options.unknown")]
     render :text => data.join("\n")
   end
 

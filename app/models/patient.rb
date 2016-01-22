@@ -98,7 +98,7 @@ class Patient < ActiveRecord::Base
   end
 
   def date_registered
-    I18n.l(self.created_at, format: "%d - %b - %Y")
+    I18n.l(self.created_at, format: "%d/%b/%Y")
   end
 
   def self.get_similar_first_names(search_term)
