@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 
-
+*~
 .idea/*
 config/*.yml
 test/fixtures/*.yml
