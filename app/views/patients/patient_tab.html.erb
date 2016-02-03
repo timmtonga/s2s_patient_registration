@@ -44,7 +44,7 @@
                   <%= t('forms.labels.region_of_residence') %>
                 </div>
                 <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
-                  <%= @patient.region_of_residence %>
+                  <%= (@patient.region_of_residence== "Unknown" ? t('forms.options.unknown') : @patient.region_of_residence) %>
                 </div>
               </div>
               <div style="display: table-row;">
@@ -52,7 +52,7 @@
                   <%= t('forms.labels.province_of_residence') %>
                 </div>
                 <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
-                  <%= @patient.province_of_residence %>
+                  <%= (@patient.province_of_residence == "Unknown" ? t('forms.options.unknown') : @patient.province_of_residence) %>
                 </div>
               </div>
               <div style="display: table-row;">
@@ -60,7 +60,7 @@
                   <%= t('forms.labels.barrio_of_residence') %>
                 </div>
                 <div style="display: table-cell; border-bottom: 1px dotted #5679c1; padding: 5px;">
-                  <%= @patient.barrio_of_residence %>
+                  <%= (@patient.barrio_of_residence == "Unknown" ? t('forms.options.unknown') : @patient.barrio_of_residence) %>
                 </div>
               </div>
               <div style="display: table-row;">

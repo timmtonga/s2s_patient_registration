@@ -20,6 +20,7 @@ en:
       user_details: "User Details"
       update_password: "Update Password"
       update_user: "User Details Edit"
+      search_results: "Search Results"
     labels:
       first_name: "First Name"
       middle_name: "Middle Name"
@@ -142,6 +143,8 @@ en:
       place_of_birth: "Place of Birth"
       area_of_residence: "Area of Residence"
       date_registered: "Date registered"
+      patient_id: "Patient #"
+      records_found: "Records Found"
   messages:
     printing_wait: "Printing, please wait ...."
     social_security: "Please enter a valid social security number"

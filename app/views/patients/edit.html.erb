@@ -28,8 +28,8 @@
             <label for="gender">Gender</label><br>
             <select id="gender" name="patient[gender]" class="input_cell">
               <option></option>
-              <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> ><%= t('forms.options.female') %></option>
-              <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> ><%= t('forms.options.male') %></option>
+              <option <%= ((@patient[:gender] rescue nil) == "Female" ? "selected" : "") %> value="Female" ><%= t('forms.options.female') %></option>
+              <option <%= ((@patient[:gender] rescue nil) == "Male" ? "selected" : "") %> value="Male"><%= t('forms.options.male') %></option>
             </select>
           </div>
       <% elsif params[:section] == "national_id" %>

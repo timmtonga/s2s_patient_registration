@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 es:
   activerecord:
     attributes:
@@ -33,6 +12,7 @@ es:
         user_details: "Detalles del usuario"
         update_password: "Cambiar contraseña"
         update_user: "Detalles del usuario editar"
+        search_results: "Resultados de la búsqueda"
     labels:
         first_name: "Primer nombre"
         middle_name: "Segundo nombre"
@@ -150,10 +130,13 @@ es:
         updated: "Actualizado"
         name: "Nombre"
         date_of_birth: "Fecha de nacimiento"
-        place_of_birth: "Place of Birth"
-        area_of_residence: "Area of Residence"
+        place_of_birth: "Lugar de nacimiento"
+        area_of_residence: "Area de residencia"
         occupation: "Ocupación"
         date_registered: "Date registered"
+        patient_id: "Paciente #"
+        records_found: "Historias encontradas"
+        date_registered: "Fecha registrada"
   messages:
        printing_wait: "Imprimiendo, favor esperar ...."
        social_security: "Favor entrar número de la Tarjeta de Identidad"

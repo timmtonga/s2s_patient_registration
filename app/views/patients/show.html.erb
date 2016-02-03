@@ -15,7 +15,7 @@
 
     <input type="text" id="name" value="<%= @patient.fullname.titleize %>" />
 
-    <input type="text" id="Patient ID" value="<%= @patient.formatted_pnid %>" />
+    <input type="text" id="<%= t('menu.terms.patient_id') %>" value="<%= @patient.formatted_pnid %>" />
 
     <input type="text" id="<%= t('menu.terms.age') %>" value="<%= @patient.age %>" />
 

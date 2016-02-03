@@ -64,7 +64,7 @@
 
 <fieldset>
   <legend>
-    <%= t('forms.legends.user_details') %>
+    <%= t('forms.legends.patient_details') %>
   </legend>
 
     <div class="container">
@@ -72,7 +72,7 @@
 
         <tr>
           <th><%= t('menu.terms.name') %></th>
-          <td class="data"><%=@patient.fullname%></td>
+          <td class="data"><%=@patient.fullname.titleize%></td>
           <td><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=name", target: "_parent",
                           :class => "anchor_class" %>
           </td>
@@ -80,7 +80,7 @@
 
         <tr>
           <th><%= t('menu.terms.gender') %></th>
-          <td><%=@patient.gender%></td>
+          <td><%= t("forms.options.#{@patient.gender.downcase}") %></td>
           <td class="data"><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=gender", target: "_parent",
                                        :class => "anchor_class" %>
           </td>
@@ -88,7 +88,7 @@
 
         <tr>
           <th><%= t('menu.terms.marital_status') %></th>
-          <td><%=@patient.marital_status %></td>
+          <td><%= t("forms.options.#{@patient.marital_status.downcase}") %></td>
           <td class="data"><%= link_to t('forms.buttons.edit'),"/patients/#{@patient.id}/edit?section=marital_status", target: "_parent",
                                        :class => "anchor_class" %>
           </td>

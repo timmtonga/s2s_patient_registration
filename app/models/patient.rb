@@ -27,18 +27,18 @@ class Patient < ActiveRecord::Base
   end
 
   def search_result_format
-      return fullname + " ( #{self.patient_identifier} - #{I18n.t('forms.options.'+self.gender.downcase).titleize} - #{I18n.t('menu.terms.age').titleize}: #{self.age})"
+      return fullname.titleize + " ( #{self.patient_identifier} - #{I18n.t('forms.options.'+self.gender.downcase).titleize} - #{I18n.t('menu.terms.age').titleize}: #{self.age})"
   end
 
   def age
     age_in_days = (Date.today - self.birthdate).to_i
 
     if age_in_days < 31
-      return age_in_days.to_s + " days"
+      return age_in_days.to_s + " días"
     elsif age_in_days < 365
       years = (Date.today.year - self.birthdate.year)
       months = (Date.today.month - self.birthdate.month)
-      return ((years * 12) + months).to_s + " months"
+      return ((years * 12) + months).to_s + " meses"
     else
       return (age_in_days / 365)
     end
@@ -158,11 +158,11 @@ class Patient < ActiveRecord::Base
   end
 
   def current_residence
-      return self.province_of_residence + "/" + self.barrio_of_residence
+      return (self.province_of_residence== "Unknown" ? I18n.t('forms.options.unknown') : self.province_of_residence) + "/" + (self.barrio_of_residence == "Unknown" ? I18n.t('forms.options.unknown') : self.barrio_of_residence)
   end
 
   def place_of_birth
-    return self.region_of_birth + "/" + self.province_of_birth
+    return (self.region_of_birth== "Unknown" ? I18n.t('forms.options.unknown') : self.region_of_birth) + "/" + (self.province_of_birth == "Unknown" ? I18n.t('forms.options.unknown') : self.province_of_birth)
   end
 
   private
