@@ -127,7 +127,7 @@ class PatientsController < ApplicationController
     if params[:identifier].length == 7
       @patient = Patient.find_by_patient_identifier(params[:identifier])
     else
-      @patient = Patient.find_by_national_id(params[:identifier])
+      @patient = Patient.find_by_national_id(params[:identifier].gsub('_','').gsub('-','').gsub(' ',''))
     end
 
     if @patient.blank?
