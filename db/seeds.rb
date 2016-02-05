@@ -8,3 +8,5 @@
 
 User.create({:username => 'admin', :password => 'testing',:role =>'administrator',
           :first_name => 'Admin', :fathers_name => 'default', :mothers_name => 'user'})
+User.create({:username => 'clerk', :password => 'testing',:role =>'clerk',
+          :first_name => 'Data', :fathers_name => 'Entry', :mothers_name => 'Clerk'})
