@@ -46,7 +46,7 @@
             <label for="birthdate">Date of Birth</label>
             <br>
 
-            <input id="birthdate" name="patient[birthdate]" type="text" value="<%= @patient[:birthdate] rescue nil %>"
+            <input id="birthdate" name="patient[birthdate]" type="text" value="<%= @patient.birthdate_formatted rescue nil %>"
                    class="input_cell"
                    fieldtype="date"
                    absolute_min="<%= Time.now.advance(:years => -130).strftime('%Y/%m/%d') %>"

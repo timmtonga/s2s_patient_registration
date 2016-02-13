@@ -21,7 +21,10 @@ var currentCaseUpper = true;
 var currentKeysNumeric = false;
 var currentKeysQWERTY = true;
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var months = [I18n.t("forms.options.january_short"),I18n.t("forms.options.february_short"),I18n.t("forms.options.march_short"),
+    I18n.t("forms.options.april_short"),I18n.t("forms.options.may_short"),I18n.t("forms.options.june_short"),
+    I18n.t("forms.options.july_short"),I18n.t("forms.options.august_short"),I18n.t("forms.options.september_short"),
+    I18n.t("forms.options.october_short"),I18n.t("forms.options.november_short"),I18n.t("forms.options.december_short")];
 
 var monthNames = {
     "Jan": 0,
