@@ -1659,8 +1659,8 @@ function incrementDate(id) {
 
         var month = monthNames[__$("txtMonthFor" + id).value.trim()];
 
-        var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + padZeros((value + 1),2) )
-
+        var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + padZeros((value + 1) ,2) )
+        console.log(testDate)
         if (isNaN(testDate))
         {
             value = 1;
@@ -1672,7 +1672,7 @@ function incrementDate(id) {
 
 
         __$("txtDateFor" + id).value = value;
-
+        console.log( __$("txtDateFor" + id).value)
         checkDate(id);
     }
 }
@@ -1817,23 +1817,14 @@ function checkDate(id, byAge) {
 
             var month = monthNames[__$("txtMonthFor" + id).value.trim()];
 
-            if (month + 1 < 12) {
-                month += 2;
-            } else {
-                month = 1;
-            }
-
-            var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros(month, 2) + "-01")
-
-            var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + __$("txtDateFor" + id).value.trim())
+            var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + padZeros(__$("txtDateFor" + id).value.trim(),2))
 
             if (isNaN(testDate))
             {
-                date.setDate(date.getDate() - 1);
+                var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 2), 2) + "-01")
+                var prevDate = new Date(date - 1)
 
-                if (value > date.getDate()) {
-                    value = date.getDate();
-                }
+                value = prevDate.getDate();
 
                 __$("txtDateFor" + id).value = value;
 
