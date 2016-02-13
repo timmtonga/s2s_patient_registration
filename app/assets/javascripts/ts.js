@@ -1659,21 +1659,17 @@ function incrementDate(id) {
 
         var month = monthNames[__$("txtMonthFor" + id).value.trim()];
 
-        if (month + 2 < 12) {
-            month += 2;
-        } else {
-            month = 1;
-        }
+        var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + padZeros((value + 1),2) )
 
-        var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros(month, 2) + "-01")
-
-        date.setDate(date.getDate() - 1);
-
-        if (value + 1 <= date.getDate()) {
-            value++;
-        } else {
+        if (isNaN(testDate))
+        {
             value = 1;
         }
+        else
+        {
+            value += 1;
+        }
+
 
         __$("txtDateFor" + id).value = value;
 
@@ -1687,20 +1683,15 @@ function decrementDate(id) {
 
         var month = monthNames[__$("txtMonthFor" + id).value.trim()];
 
-        if (month + 2 < 12) {
-            month += 2;
-        } else {
-            month = 1;
-        }
-
-        var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros(month, 2) + "-01")
-
-        date.setDate(date.getDate() - 1);
-
-        if (value - 1 > 0) {
+        if (value - 1 > 0)
+        {
             value--;
-        } else {
-            value = date.getDate();
+        }
+        else
+        {
+            var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 2), 2) + "-01")
+            var prevDate = new Date(date - 1)
+            value = prevDate.getDate();
         }
 
         __$("txtDateFor" + id).value = value;
@@ -1834,13 +1825,19 @@ function checkDate(id, byAge) {
 
             var date = new Date(__$("txtYearFor" + id).value.trim() + "-" + padZeros(month, 2) + "-01")
 
-            date.setDate(date.getDate() - 1);
+            var testDate = Date.parse(__$("txtYearFor" + id).value.trim() + "-" + padZeros((monthNames[__$("txtMonthFor" + id).value.trim()] + 1), 2) + "-" + __$("txtDateFor" + id).value.trim())
 
-            if (value > date.getDate()) {
-                value = date.getDate();
+            if (isNaN(testDate))
+            {
+                date.setDate(date.getDate() - 1);
+
+                if (value > date.getDate()) {
+                    value = date.getDate();
+                }
+
+                __$("txtDateFor" + id).value = value;
+
             }
-
-            __$("txtDateFor" + id).value = value;
 
             if (__$(id)) {
 
